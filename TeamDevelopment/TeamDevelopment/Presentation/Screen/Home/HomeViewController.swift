@@ -81,13 +81,10 @@ extension HomeViewController: UITableViewDataSource {
             // 3.このif文を書いてHomeTableViewCellであることを保証し、
             // インスタンス変数modelにアクセスする
             // このas?は「ダウンキャスト」を行なっている
-            /*if let cell = cell as? HomeTableViewCell {
+            if let cell = cell as? HomeTableViewCell {
                 cell.model = cards[indexPath.row]
-            }*/
+            }
             
-            let bell = cell as? HomeTableViewCell
-            bell?.model = cards[indexPath.row]
-
             // 4.returnする
             return cell
         default:
