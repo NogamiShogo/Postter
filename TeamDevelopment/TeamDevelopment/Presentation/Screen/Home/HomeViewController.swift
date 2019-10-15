@@ -44,7 +44,7 @@ final class HomeViewController: UIViewController, Storyboardable {
         self.view.sendSubviewToBack(tableView)
         
         tableView.dataSource = self
-        //tableView.allowsSelection = false
+        tableView.allowsSelection = false
         //tableView.separatorStyle = .none
         
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
