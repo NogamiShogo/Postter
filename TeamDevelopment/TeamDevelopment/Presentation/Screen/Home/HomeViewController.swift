@@ -21,8 +21,16 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     // MARK: - Proprerty
     
+    private var items: [Item] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private let cards = [
-        CardModel(day: "2019/10/11", text: "テスト")
+        CardModel(day: "date", text: "body"),
+        
+        CardModel(day: items[0].date, text: items[0].post)
     ]
 
     // MARK: - Outlet
@@ -35,7 +43,9 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setItems()
         setupUI()
+        
     }
     
     // MARK: - Private
@@ -49,20 +59,41 @@ final class HomeViewController: UIViewController, Storyboardable {
         
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HomeTableViewCell")
-
+        
+    }
+    
+    
+    
+    private func setItems() {
+        API.shared.call(GetItemsRequest(page: 1, query: ""), successHandler: { result in
+            self.items = result
+            
+            
+        })
     }
     
     // MARK: - Action
     
+    @IBAction func reload(_ sender: Any) {
+        setItems()
+    }
+    
     @IBAction func TweetButtonDidTap(_ sender: Any) {
         let viewController = TweetViewController.build()
         navigationController?.pushViewController(viewController, animated: true)
+        
+        print(items[0].post)
+        print(items[1].post)
     }
 }
 
 // MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -84,6 +115,8 @@ extension HomeViewController: UITableViewDataSource {
             if let cell = cell as? HomeTableViewCell {
                 cell.model = cards[indexPath.row]
             }
+            
+            
             
             // 4.returnする
             return cell
