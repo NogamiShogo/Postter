@@ -18,7 +18,11 @@ final class TweetViewController: UIViewController, Storyboardable {
 
         return viewController
     }
-
+    
+    // MARK: - Proprerty
+    
+    @IBOutlet private weak var textField: UITextField!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -30,5 +34,24 @@ final class TweetViewController: UIViewController, Storyboardable {
     
     private func setupUI() {
         
+    }
+    
+    // MARK: - Action
+    
+    @IBAction private func tweetButtonDidTap(_ sender: Any) {
+        
+        if textField.text != "" {
+            API.shared.post(PostRequest(body: textField.text), successHandler: { result in
+            })
+            textField.text = ""
+        }
+        
+        
+        
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction private func cancel(_ sender: Any){
+        self.dismiss(animated: true)
     }
 }

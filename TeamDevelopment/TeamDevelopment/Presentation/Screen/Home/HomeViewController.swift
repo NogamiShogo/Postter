@@ -27,11 +27,7 @@ final class HomeViewController: UIViewController, Storyboardable {
         }
     }
     
-    private let cards = [
-        CardModel(day: "date", text: "body"),
-        
-        CardModel(day: items[0].date, text: items[0].post)
-    ]
+    private var cards: [CardModel] = []
 
     // MARK: - Outlet
     
@@ -60,15 +56,18 @@ final class HomeViewController: UIViewController, Storyboardable {
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HomeTableViewCell")
         
+        
     }
     
-    
-    
     private func setItems() {
-        API.shared.call(GetItemsRequest(page: 1, query: ""), successHandler: { result in
+        API.shared.get(GetItemsRequest(page: 1), successHandler: { result in
             self.items = result
             
+            for i in 0..<self.cards.count {
+                self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post))
+            }
             
+            self.tableView.reloadData()
         })
     }
     
@@ -80,10 +79,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     @IBAction func TweetButtonDidTap(_ sender: Any) {
         let viewController = TweetViewController.build()
-        navigationController?.pushViewController(viewController, animated: true)
-        
-        print(items[0].post)
-        print(items[1].post)
+        present(viewController, animated: true)
     }
 }
 
