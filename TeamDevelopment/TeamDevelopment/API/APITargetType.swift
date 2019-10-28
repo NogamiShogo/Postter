@@ -32,4 +32,3 @@ extension APITargetType {
         return Data()
     }
 }
-

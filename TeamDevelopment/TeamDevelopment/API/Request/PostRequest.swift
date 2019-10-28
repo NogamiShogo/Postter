@@ -30,4 +30,3 @@ extension PostRequest: APITargetType {
         return .requestParameters(parameters: ["name": name!], encoding: JSONEncoding.default)
     }
 }
-
