@@ -11,7 +11,7 @@ import Moya
 struct GetItemsRequest {
 
     let page: Int
-    let query: String?
+    //let query: String?
 }
 
 // MARK: - APITargetType
@@ -21,7 +21,7 @@ extension GetItemsRequest: APITargetType {
     typealias Response = [Item]
 
     var path: String {
-        return "/items"
+        return "/postter"
     }
 
     var method: Method {
@@ -29,8 +29,7 @@ extension GetItemsRequest: APITargetType {
     }
 
     var task: Task {
-        // 検索機能を使って初期値をSwiftの記事限定にしておいた
-        return .requestParameters(parameters: ["page": page, "query": query ?? "swift"], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
     }
 }
 

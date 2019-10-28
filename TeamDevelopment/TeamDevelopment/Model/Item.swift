@@ -8,14 +8,10 @@
 
 import Foundation
 
-import Foundation
-
 struct Item: Codable {
-
-    let title: String
-    let url: URL
-    let commentsCount: Int
-    let description: String?
-    let id: String
-    let profileImageUrl: URL
+    let date: String
+    let id: Int
+    let post: String
 }
+
+
