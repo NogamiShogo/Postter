@@ -9,7 +9,7 @@
 import Moya
 
 struct PostRequest {
-    let body: String?
+    let name: String?
 }
 
 // MARK: - APITargetType
@@ -27,6 +27,6 @@ extension PostRequest: APITargetType {
     }
 
     var task: Task {
-        return .requestParameters(parameters: ["body": body!], encoding: JSONEncoding.default)
+        return .requestParameters(parameters: ["name": name!], encoding: JSONEncoding.default)
     }
 }

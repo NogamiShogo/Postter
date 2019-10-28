@@ -9,9 +9,9 @@
 import Foundation
 
 struct Item: Codable {
-    let post: String
     let date: String
     let id: Int
+    let post: String
 }
 
 
