@@ -17,11 +17,9 @@ final class HomeTableViewCell: UITableViewCell {
 
     // MARK: - Outlet
 
-    @IBOutlet private weak var bodyLabel: UILabel!
+    @IBOutlet weak var bodyLabel: UILabel!
     
     @IBOutlet private weak var dateLabel: UILabel!
-    
-    //bodyLabel.numberOfLines = 0
 
     // MARK: - Property
 
