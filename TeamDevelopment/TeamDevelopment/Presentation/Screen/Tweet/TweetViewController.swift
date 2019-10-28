@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 final class TweetViewController: UIViewController, Storyboardable {
     
@@ -31,12 +30,6 @@ final class TweetViewController: UIViewController, Storyboardable {
         setupUI()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        presentingViewController?.beginAppearanceTransition(true, animated: animated)
-        presentingViewController?.endAppearanceTransition()
-    }
-    
     // MARK: - Private
     
     private func setupUI() {
@@ -48,15 +41,12 @@ final class TweetViewController: UIViewController, Storyboardable {
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
         if textField.text != "" {
-            print("start")
             API.shared.post(PostRequest(name: textField.text), successHandler: { result in
-                print("fin")
             })
-            
             textField.text = ""
         }
         
-        print("fin*")
+        
         
         self.dismiss(animated: true)
     }
@@ -65,3 +55,4 @@ final class TweetViewController: UIViewController, Storyboardable {
         self.dismiss(animated: true)
     }
 }
+

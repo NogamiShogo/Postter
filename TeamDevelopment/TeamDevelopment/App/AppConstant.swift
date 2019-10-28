@@ -12,3 +12,4 @@ struct AppConstant {
     static let domain = "https://postter.serveo.net"
     static let baseURL = "\(domain)/"
 }
+
