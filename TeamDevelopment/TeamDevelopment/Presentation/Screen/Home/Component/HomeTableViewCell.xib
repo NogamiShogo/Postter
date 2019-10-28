@@ -59,8 +59,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="bodyLabel" destination="JiS-E6-9Lb" id="vmi-Ru-td4"/>
-                <outlet property="dateLabel" destination="Qj5-hS-7Zc" id="cbO-yZ-zeC"/>
+                <outlet property="dayLabel" destination="Qj5-hS-7Zc" id="fzI-Rb-Jmk"/>
+                <outlet property="mainTextLabel" destination="JiS-E6-9Lb" id="8Bv-NQ-vc6"/>
             </connections>
             <point key="canvasLocation" x="253.62318840579712" y="60.267857142857139"/>
         </tableViewCell>
