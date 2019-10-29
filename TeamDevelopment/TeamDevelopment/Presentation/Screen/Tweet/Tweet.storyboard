@@ -49,6 +49,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textField" destination="NSy-sq-GAX" id="HfQ-em-Gtk"/>
+                        <outlet property="tweetButton" destination="PhO-kP-K11" id="z1a-IU-74D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yje-Ab-x4c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

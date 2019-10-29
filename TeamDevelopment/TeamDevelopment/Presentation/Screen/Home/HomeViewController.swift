@@ -44,6 +44,12 @@ final class HomeViewController: UIViewController, Storyboardable {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setItems()
+         }
+
+    
     // MARK: - Private
     
     private func setupUI() {
@@ -56,14 +62,20 @@ final class HomeViewController: UIViewController, Storyboardable {
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HomeTableViewCell")
         
-        
+        tweetButton.imageView?.contentMode = .scaleAspectFit
+        tweetButton.contentHorizontalAlignment = .fill
+        tweetButton.contentVerticalAlignment = .fill
+        tweetButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 16);
+
     }
     
     private func setItems() {
+        cards = cards.filter { $0.body == "" }
+
         API.shared.get(GetItemsRequest(page: 1), successHandler: { result in
             self.items = result
             
-            for i in 0..<self.cards.count {
+            for i in (0..<self.items.count).reversed() {
                 self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post))
             }
             

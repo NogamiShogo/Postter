@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TweetViewController: UIViewController, Storyboardable {
+final class TweetViewController: UIViewController, Storyboardable, UITextFieldDelegate{
     
     // MARK: - Builder
 
@@ -18,6 +18,10 @@ final class TweetViewController: UIViewController, Storyboardable {
 
         return viewController
     }
+    
+    // MARK: - Outlet
+    
+    @IBOutlet weak var tweetButton: UIBarButtonItem!
     
     // MARK: - Proprerty
     
@@ -30,10 +34,21 @@ final class TweetViewController: UIViewController, Storyboardable {
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presentingViewController?.beginAppearanceTransition(true, animated: animated)
+        presentingViewController?.endAppearanceTransition()
+    }
+
+    
+    private func textFieldDidEndEditing(textField: UITextField) {
+        tweetButton.isEnabled = true
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
-        
+        tweetButton.isEnabled = false
     }
     
     // MARK: - Action
@@ -55,3 +70,4 @@ final class TweetViewController: UIViewController, Storyboardable {
         self.dismiss(animated: true)
     }
 }
+
