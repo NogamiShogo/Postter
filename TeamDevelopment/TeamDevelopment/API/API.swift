@@ -17,7 +17,7 @@ final class API {
     private let provider = MoyaProvider<MultiTarget>()
     
     // 引数にメソッドを定義 @escapingをつける
-    func call(_ request: GetItemsRequest, successHandler: @escaping (GetItemsRequest.Response) -> Void) {
+    func get(_ request: GetItemsRequest, successHandler: @escaping (GetItemsRequest.Response) -> Void) {
         let target = MultiTarget(request)
         
         self.provider.request(target) { response in
@@ -38,8 +38,28 @@ final class API {
         }
     }
     
+    func post(_ request: PostRequest, successHandler: @escaping (PostRequest.Response) -> Void) {
+        let target = MultiTarget(request)
+        
+        self.provider.request(target) { response in
+            switch response.result {
+            case .success(let result):
+                do {
+                    // 結果表示
+                    print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    
+                    // 引数のメソッドを実行
+                    successHandler(try JSONDecoder().decode(PostRequest.Response.self, from: result.data))
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     // MARK: - Private
     
     private init() {}
 }
-

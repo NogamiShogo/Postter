@@ -16,6 +16,7 @@
 		2100EF77235053300069F384 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2100EF76235053300069F384 /* HomeTableViewCell.xib */; };
 		2100EF79235054840069F384 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF78235054840069F384 /* CardModel.swift */; };
 		2100EF7B23505D960069F384 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF7A23505D960069F384 /* HomeTableViewCell.swift */; };
+		21066B71236029A0009FC203 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066B70236029A0009FC203 /* PostRequest.swift */; };
 		21C5907E234DAD070077ACB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5907D234DAD070077ACB9 /* AppDelegate.swift */; };
 		21C59080234DAD070077ACB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5907F234DAD070077ACB9 /* SceneDelegate.swift */; };
 		21C59082234DAD070077ACB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C59081234DAD070077ACB9 /* ContentView.swift */; };
@@ -67,6 +68,7 @@
 		2100EF76235053300069F384 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		2100EF78235054840069F384 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		2100EF7A23505D960069F384 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		21066B70236029A0009FC203 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		21C5907A234DAD070077ACB9 /* TeamDevelopment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamDevelopment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C5907D234DAD070077ACB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21C5907F234DAD070077ACB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				2100EF6923504DCA0069F384 /* GetItemsRequest.swift */,
+				21066B70236029A0009FC203 /* PostRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				21C590D5234DB77D0077ACB9 /* SettingNavigationController.swift in Sources */,
 				21C590CE234DB6FB0077ACB9 /* MainViewController.swift in Sources */,
 				2100EF712350507F0069F384 /* Item.swift in Sources */,
+				21066B71236029A0009FC203 /* PostRequest.swift in Sources */,
 				2100EF79235054840069F384 /* CardModel.swift in Sources */,
 				21C5907E234DAD070077ACB9 /* AppDelegate.swift in Sources */,
 				2100EF7B23505D960069F384 /* HomeTableViewCell.swift in Sources */,

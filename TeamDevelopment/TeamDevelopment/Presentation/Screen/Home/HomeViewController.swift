@@ -21,9 +21,13 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     // MARK: - Proprerty
     
-    private let cards = [
-        CardModel(day: "2019/10/11", text: "テスト")
-    ]
+    private var items: [Item] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private var cards: [CardModel] = []
 
     // MARK: - Outlet
     
@@ -35,8 +39,16 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setItems()
         setupUI()
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setItems()
+         }
+
     
     // MARK: - Private
     
@@ -49,20 +61,47 @@ final class HomeViewController: UIViewController, Storyboardable {
         
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HomeTableViewCell")
+        
+        tweetButton.imageView?.contentMode = .scaleAspectFit
+        tweetButton.contentHorizontalAlignment = .fill
+        tweetButton.contentVerticalAlignment = .fill
+        tweetButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 16);
 
+    }
+    
+    private func setItems() {
+        cards = cards.filter { $0.body == "" }
+
+        API.shared.get(GetItemsRequest(page: 1), successHandler: { result in
+            self.items = result
+            
+            for i in (0..<self.items.count).reversed() {
+                self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post))
+            }
+            
+            self.tableView.reloadData()
+        })
     }
     
     // MARK: - Action
     
+    @IBAction func reload(_ sender: Any) {
+        setItems()
+    }
+    
     @IBAction func TweetButtonDidTap(_ sender: Any) {
         let viewController = TweetViewController.build()
-        navigationController?.pushViewController(viewController, animated: true)
+        present(viewController, animated: true)
     }
 }
 
 // MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -84,6 +123,8 @@ extension HomeViewController: UITableViewDataSource {
             if let cell = cell as? HomeTableViewCell {
                 cell.model = cards[indexPath.row]
             }
+            
+            
             
             // 4.returnする
             return cell

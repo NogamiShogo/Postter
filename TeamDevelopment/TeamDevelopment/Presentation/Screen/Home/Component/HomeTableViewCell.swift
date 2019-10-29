@@ -17,16 +17,19 @@ final class HomeTableViewCell: UITableViewCell {
 
     // MARK: - Outlet
 
-    @IBOutlet weak var mainTextLabel: UILabel!
+    @IBOutlet weak var bodyLabel: UILabel!
     
-    @IBOutlet private weak var dayLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
 
     // MARK: - Property
 
     var model: CardModel! {
         didSet {
-            mainTextLabel.text = model.text
-            dayLabel.text = model.day
+            //mainTextLabel.text = model.text
+            //dayLabel.text = model.day
+            
+            bodyLabel.text = model.body
+            dateLabel.text = model.date
         }
     }
     
