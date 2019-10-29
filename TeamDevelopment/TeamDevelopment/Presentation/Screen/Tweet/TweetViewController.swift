@@ -34,6 +34,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
         setupUI()
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presentingViewController?.beginAppearanceTransition(true, animated: animated)
@@ -41,9 +42,6 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     }
 
     
-    private func textFieldDidEndEditing(textField: UITextField) {
-        tweetButton.isEnabled = true
-    }
     
     // MARK: - Private
     
@@ -53,6 +51,14 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     // MARK: - Action
     
+    @IBAction func textFieldEditingChanged(_ sender: Any) {
+        if textField.text == "" {
+            tweetButton.isEnabled = false
+        } else {
+            tweetButton.isEnabled = true
+        }
+    }
+    
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
         if textField.text != "" {
@@ -60,8 +66,6 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
             })
             textField.text = ""
         }
-        
-        
         
         self.dismiss(animated: true)
     }

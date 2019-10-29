@@ -33,7 +33,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="投稿" id="PhO-kP-K11">
                                             <connections>
-                                                <action selector="tweetButtonDidTap:" destination="uo9-Tp-s9t" id="plD-5O-by8"/>
+                                                <action selector="textFieldEditingChanged:" destination="uo9-Tp-s9t" id="Fdd-xl-nSj"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
