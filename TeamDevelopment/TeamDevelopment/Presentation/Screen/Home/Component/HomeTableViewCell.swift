@@ -19,6 +19,8 @@ final class HomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var bodyLabel: UILabel!
     
+    @IBOutlet weak var goodCount: UILabel!
+    
     @IBOutlet private weak var dateLabel: UILabel!
 
     // MARK: - Property

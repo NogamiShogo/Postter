@@ -27,6 +27,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QcA-Sc-baA">
+                        <rect key="frame" x="108" y="45" width="11" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gml-cs-sYN">
                         <rect key="frame" x="60" y="45" width="40" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -36,7 +43,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWA-ev-zWv">
-                        <rect key="frame" x="104" y="45" width="30" height="32"/>
+                        <rect key="frame" x="127" y="45" width="30" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="Bad"/>
                         <connections>
@@ -46,9 +53,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="top" secondItem="O7L-qP-gog" secondAttribute="topMargin" constant="24" id="0uv-V6-i4C"/>
-                    <constraint firstItem="cWA-ev-zWv" firstAttribute="leading" secondItem="Gml-cs-sYN" secondAttribute="leading" constant="44" id="5Fq-C0-ZHx"/>
+                    <constraint firstItem="QcA-Sc-baA" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="4" id="54b-TX-wWv"/>
+                    <constraint firstItem="cWA-ev-zWv" firstAttribute="leading" secondItem="QcA-Sc-baA" secondAttribute="trailing" constant="8" id="5Fq-C0-ZHx"/>
                     <constraint firstItem="Qj5-hS-7Zc" firstAttribute="trailing" secondItem="O7L-qP-gog" secondAttribute="trailingMargin" constant="4" id="5Sx-dz-LFC"/>
                     <constraint firstItem="cWA-ev-zWv" firstAttribute="bottom" secondItem="O7L-qP-gog" secondAttribute="bottomMargin" constant="4" id="DNy-i7-Rba"/>
+                    <constraint firstItem="QcA-Sc-baA" firstAttribute="leading" secondItem="Gml-cs-sYN" secondAttribute="trailing" constant="8" id="FJk-9j-EiC"/>
                     <constraint firstItem="Qj5-hS-7Zc" firstAttribute="top" secondItem="O7L-qP-gog" secondAttribute="topMargin" constant="4" id="JLe-ZO-V6h"/>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leadingMargin" constant="40" id="MmJ-RD-yW4"/>
                     <constraint firstItem="Gml-cs-sYN" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leading" constant="60" id="Ncw-1X-uSw"/>
@@ -59,8 +68,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dayLabel" destination="Qj5-hS-7Zc" id="fzI-Rb-Jmk"/>
-                <outlet property="mainTextLabel" destination="JiS-E6-9Lb" id="8Bv-NQ-vc6"/>
+                <outlet property="bodyLabel" destination="JiS-E6-9Lb" id="z4k-B4-bF7"/>
+                <outlet property="dateLabel" destination="Qj5-hS-7Zc" id="yzn-f5-1f3"/>
+                <outlet property="goodCount" destination="QcA-Sc-baA" id="2N4-Ce-oaG"/>
             </connections>
             <point key="canvasLocation" x="253.62318840579712" y="60.267857142857139"/>
         </tableViewCell>

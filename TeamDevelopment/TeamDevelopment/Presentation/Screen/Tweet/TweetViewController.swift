@@ -46,7 +46,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     // MARK: - Private
     
     private func setupUI() {
-        tweetButton.isEnabled = false
+        //tweetButton.isEnabled = false
     }
     
     // MARK: - Action
@@ -62,7 +62,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
         if textField.text != "" {
-            API.shared.post(PostRequest(name: textField.text), successHandler: { result in
+            API.shared.post(PostRequest(post: textField.text!), successHandler: { result in
             })
             textField.text = ""
         }

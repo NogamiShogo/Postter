@@ -39,7 +39,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setItems()
+        //setItems()
         setupUI()
         
     }
@@ -47,7 +47,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setItems()
-         }
+        }
 
     
     // MARK: - Private
@@ -78,7 +78,7 @@ final class HomeViewController: UIViewController, Storyboardable {
             for i in (0..<self.items.count).reversed() {
                 self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post))
             }
-            
+
             self.tableView.reloadData()
         })
     }
