@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 struct CardModel {
-
     // Optional型 nil(null)を入れることが可能
     // Swiftの変数は通常はnilが入らない。?をつけることで
     // nilを入れることが可能, imageを「値を入れても入れなくても良い」

@@ -38,6 +38,9 @@ final class HomeTableViewCell: UITableViewCell {
     // MARK: - Action
     
     @IBAction func goodButtonDidTap(_ sender: Any) {
+        if AppContext.shared.goodBool[] == nil {
+            
+        }
     }
     
     @IBAction func badButtonDidTap(_ sender: Any) {

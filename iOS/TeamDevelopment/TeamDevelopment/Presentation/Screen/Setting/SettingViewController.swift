@@ -23,7 +23,6 @@ final class SettingViewController: UITableViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
     }
     

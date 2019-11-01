@@ -124,8 +124,6 @@ extension HomeViewController: UITableViewDataSource {
                 cell.model = cards[indexPath.row]
             }
             
-            
-            
             // 4.returnする
             return cell
         default:
