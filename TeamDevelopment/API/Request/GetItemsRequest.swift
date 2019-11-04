@@ -21,7 +21,7 @@ extension GetItemsRequest: APITargetType {
     typealias Response = [Item]
 
     var path: String {
-        return "/postter"
+        return ""
     }
 
     var method: Method {

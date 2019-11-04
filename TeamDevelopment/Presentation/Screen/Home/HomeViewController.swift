@@ -23,6 +23,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     private var items: [Item] = [] {
         didSet {
+            AppContext.shared.items = items
             tableView.reloadData()
         }
     }
@@ -39,17 +40,14 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setItems()
         setupUI()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setItems()
-        }
+    }
 
-    
     // MARK: - Private
     
     private func setupUI() {
@@ -85,11 +83,11 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     // MARK: - Action
     
-    @IBAction func reload(_ sender: Any) {
+    @IBAction private func reload(_ sender: Any) {
         setItems()
     }
     
-    @IBAction func TweetButtonDidTap(_ sender: Any) {
+    @IBAction private func TweetButtonDidTap(_ sender: Any) {
         let viewController = TweetViewController.build()
         present(viewController, animated: true)
     }
@@ -123,9 +121,7 @@ extension HomeViewController: UITableViewDataSource {
             if let cell = cell as? HomeTableViewCell {
                 cell.model = cards[indexPath.row]
             }
-            
-            
-            
+
             // 4.returnする
             return cell
         default:

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import Moya
 
 // APIを叩く本体 テンプレートです
@@ -46,7 +45,8 @@ final class API {
             case .success(let result):
                 do {
                     // 結果表示
-                    print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    print("postSuccess")
                     
                     // 引数のメソッドを実行
                     successHandler(try JSONDecoder().decode(PostRequest.Response.self, from: result.data))
@@ -59,6 +59,94 @@ final class API {
         }
     }
     
+    func goodAdd(_ request: GoodAddRequest, successHandler: @escaping (GoodAddRequest.Response) -> Void) {
+        let target = MultiTarget(request)
+        
+        self.provider.request(target) { response in
+            switch response.result {
+            case .success(let result):
+                do {
+                    // 結果表示
+                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    print("goodAddSuccess")
+                    
+                    // 引数のメソッドを実行
+                    successHandler(try JSONDecoder().decode(GoodAddRequest.Response.self, from: result.data))
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func goodDelete(_ request: GoodDeleteRequest, successHandler: @escaping (GoodDeleteRequest.Response) -> Void) {
+        let target = MultiTarget(request)
+        
+        self.provider.request(target) { response in
+            switch response.result {
+            case .success(let result):
+                do {
+                    // 結果表示
+                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    print("goodDeleteSuccess")
+                    
+                    // 引数のメソッドを実行
+                    successHandler(try JSONDecoder().decode(GoodDeleteRequest.Response.self, from: result.data))
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func badAdd(_ request: BadAddRequest, successHandler: @escaping (BadAddRequest.Response) -> Void) {
+        let target = MultiTarget(request)
+        
+        self.provider.request(target) { response in
+            switch response.result {
+            case .success(let result):
+                do {
+                    // 結果表示
+                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    print("badAddSuccess")
+                    
+                    // 引数のメソッドを実行
+                    successHandler(try JSONDecoder().decode(BadAddRequest.Response.self, from: result.data))
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func badDelete(_ request: BadDeleteRequest, successHandler: @escaping (BadDeleteRequest.Response) -> Void) {
+        let target = MultiTarget(request)
+        
+        self.provider.request(target) { response in
+            switch response.result {
+            case .success(let result):
+                do {
+                    // 結果表示
+                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
+                    print("badDeleteSuccess")
+                    
+                    // 引数のメソッドを実行
+                    successHandler(try JSONDecoder().decode(BadDeleteRequest.Response.self, from: result.data))
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
     // MARK: - Private
     
     private init() {}

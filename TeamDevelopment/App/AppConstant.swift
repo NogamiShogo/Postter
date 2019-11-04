@@ -10,5 +10,5 @@
 struct AppConstant {
 
     static let domain = "https://e23d07a9.ngrok.io"
-    static let baseURL = "\(domain)"
+    static let baseURL = "\(domain)/postter"
 }

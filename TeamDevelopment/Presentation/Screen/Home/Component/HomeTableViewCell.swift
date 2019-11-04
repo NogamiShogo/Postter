@@ -27,9 +27,6 @@ final class HomeTableViewCell: UITableViewCell {
 
     var model: CardModel! {
         didSet {
-            //mainTextLabel.text = model.text
-            //dayLabel.text = model.day
-            
             bodyLabel.text = model.body
             dateLabel.text = model.date
         }
@@ -38,6 +35,15 @@ final class HomeTableViewCell: UITableViewCell {
     // MARK: - Action
     
     @IBAction func goodButtonDidTap(_ sender: Any) {
+        let goodBool = AppContext.shared.goodBool
+        let items = AppContext.shared.items
+        
+        if goodBool[0] == true {
+            
+        } else {
+            
+        }
+        
     }
     
     @IBAction func badButtonDidTap(_ sender: Any) {
