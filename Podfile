@@ -6,6 +6,7 @@ target 'TeamDevelopment' do
   use_frameworks!
 
   pod 'Moya'
+  pod 'RxSwift'
 
   # Pods for TeamDevelopment
 
