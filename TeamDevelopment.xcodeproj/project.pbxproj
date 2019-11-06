@@ -16,6 +16,9 @@
 		2100EF77235053300069F384 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2100EF76235053300069F384 /* HomeTableViewCell.xib */; };
 		2100EF79235054840069F384 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF78235054840069F384 /* CardModel.swift */; };
 		2100EF7B23505D960069F384 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF7A23505D960069F384 /* HomeTableViewCell.swift */; };
+		2102BB3C23702E2100E85DEC /* GoodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB3B23702E2100E85DEC /* GoodRequest.swift */; };
+		2102BB3E23702E4700E85DEC /* BadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB3D23702E4700E85DEC /* BadRequest.swift */; };
+		2102BB402370329700E85DEC /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB3F2370329700E85DEC /* AppContext.swift */; };
 		21066B71236029A0009FC203 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066B70236029A0009FC203 /* PostRequest.swift */; };
 		21C5907E234DAD070077ACB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5907D234DAD070077ACB9 /* AppDelegate.swift */; };
 		21C59080234DAD070077ACB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5907F234DAD070077ACB9 /* SceneDelegate.swift */; };
@@ -68,8 +71,11 @@
 		2100EF76235053300069F384 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		2100EF78235054840069F384 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		2100EF7A23505D960069F384 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		2102BB3B23702E2100E85DEC /* GoodRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodRequest.swift; sourceTree = "<group>"; };
+		2102BB3D23702E4700E85DEC /* BadRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadRequest.swift; sourceTree = "<group>"; };
+		2102BB3F2370329700E85DEC /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		21066B70236029A0009FC203 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
-		21C5907A234DAD070077ACB9 /* TeamDevelopment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamDevelopment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C5907A234DAD070077ACB9 /* Postter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Postter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C5907D234DAD070077ACB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21C5907F234DAD070077ACB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		21C59081234DAD070077ACB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +154,8 @@
 			children = (
 				2100EF6923504DCA0069F384 /* GetItemsRequest.swift */,
 				21066B70236029A0009FC203 /* PostRequest.swift */,
+				2102BB3B23702E2100E85DEC /* GoodRequest.swift */,
+				2102BB3D23702E4700E85DEC /* BadRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -167,7 +175,7 @@
 		21C5907B234DAD070077ACB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21C5907A234DAD070077ACB9 /* TeamDevelopment.app */,
+				21C5907A234DAD070077ACB9 /* Postter.app */,
 				21C59090234DAD090077ACB9 /* TeamDevelopmentTests.xctest */,
 				21C5909B234DAD090077ACB9 /* TeamDevelopmentUITests.xctest */,
 			);
@@ -231,6 +239,7 @@
 				21C5907D234DAD070077ACB9 /* AppDelegate.swift */,
 				2100EF6D23504EEC0069F384 /* AppConstant.swift */,
 				21C5907F234DAD070077ACB9 /* SceneDelegate.swift */,
+				2102BB3F2370329700E85DEC /* AppContext.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -387,7 +396,7 @@
 			);
 			name = TeamDevelopment;
 			productName = TeamDevelopment;
-			productReference = 21C5907A234DAD070077ACB9 /* TeamDevelopment.app */;
+			productReference = 21C5907A234DAD070077ACB9 /* Postter.app */;
 			productType = "com.apple.product-type.application";
 		};
 		21C5908F234DAD090077ACB9 /* TeamDevelopmentTests */ = {
@@ -596,6 +605,7 @@
 			files = (
 				21C590D3234DB75F0077ACB9 /* HomeNavigationController.swift in Sources */,
 				2100EF672350436F0069F384 /* API.swift in Sources */,
+				2102BB402370329700E85DEC /* AppContext.swift in Sources */,
 				21C590D5234DB77D0077ACB9 /* SettingNavigationController.swift in Sources */,
 				21C590CE234DB6FB0077ACB9 /* MainViewController.swift in Sources */,
 				2100EF712350507F0069F384 /* Item.swift in Sources */,
@@ -608,10 +618,12 @@
 				21C590B7234DB2940077ACB9 /* Storyboardable.swift in Sources */,
 				2100EF6C23504E0C0069F384 /* APITargetType.swift in Sources */,
 				21C590C1234DB5300077ACB9 /* TweetViewController.swift in Sources */,
+				2102BB3E23702E4700E85DEC /* BadRequest.swift in Sources */,
 				21C59080234DAD070077ACB9 /* SceneDelegate.swift in Sources */,
 				2100EF6A23504DCA0069F384 /* GetItemsRequest.swift in Sources */,
 				21C590BD234DB4C90077ACB9 /* HomeViewController.swift in Sources */,
 				21C590C6234DB56A0077ACB9 /* SettingViewController.swift in Sources */,
+				2102BB3C23702E2100E85DEC /* GoodRequest.swift in Sources */,
 				21C59082234DAD070077ACB9 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,7 +800,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "shogo-nogami.TeamDevelopment";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Postter;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -809,7 +821,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "shogo-nogami.TeamDevelopment";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Postter;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

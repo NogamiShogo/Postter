@@ -34,15 +34,6 @@ final class AppContext {
         }
     }
     
-    var items: [Item] {
-        get {
-            return userDefaults.object(forKey: "items") as? [Item] ?? []
-        }
-        set {
-            userDefaults.set(newValue, forKey: "items")
-        }
-    }
-    
     // MARK: - Private
     
     private init() {

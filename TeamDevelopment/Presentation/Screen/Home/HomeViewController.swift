@@ -21,14 +21,17 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     // MARK: - Proprerty
     
-    private var items: [Item] = [] {
+    var items: [Item] = [] {
         didSet {
-            AppContext.shared.items = items
+            //AppContext.shared.items = items
             tableView.reloadData()
         }
     }
     
-    private var cards: [CardModel] = []
+    private var cards: [CardModel] = [
+        CardModel(date: "1", body: "dammy", goodCount: 3),
+        CardModel(date: "1", body: "dammy", goodCount: 3)
+    ]
 
     // MARK: - Outlet
     
@@ -68,18 +71,20 @@ final class HomeViewController: UIViewController, Storyboardable {
     }
     
     private func setItems() {
-        cards = cards.filter { $0.body == "" }
 
         API.shared.get(GetItemsRequest(page: 1), successHandler: { result in
             self.items = result
             
+            self.cards = self.cards.filter { $0.body == "" }
+            
             for i in (0..<self.items.count).reversed() {
-                self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post))
+                self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good) )
             }
 
             self.tableView.reloadData()
         })
     }
+
     
     // MARK: - Action
     
@@ -114,13 +119,17 @@ extension HomeViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             // 2.tableViewから登録したnibのCellクラスを取り出す
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath as IndexPath) as! HomeTableViewCell
+            
+            cell.indexPath = indexPath
+            cell.model = cards[indexPath.row]
             // 3.このif文を書いてHomeTableViewCellであることを保証し、
             // インスタンス変数modelにアクセスする
             // このas?は「ダウンキャスト」を行なっている
-            if let cell = cell as? HomeTableViewCell {
+            /*if let cell = cell as? HomeTableViewCell {
                 cell.model = cards[indexPath.row]
-            }
+            }*/
+            
 
             // 4.returnする
             return cell

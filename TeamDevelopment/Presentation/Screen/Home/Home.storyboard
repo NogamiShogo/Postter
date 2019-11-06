@@ -39,7 +39,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="gwa-5A-OGw">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="refresh" id="NHs-Ab-FbG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="NHs-Ab-FbG">
                             <connections>
                                 <action selector="reload:" destination="uWD-ki-YZq" id="nMQ-xv-UfN"/>
                             </connections>

@@ -11,6 +11,7 @@ import Foundation
 struct Item: Codable {
     let post: String
     let date: String
-    let id: Int
+    let No: Int
+    let good: Int
 }
 

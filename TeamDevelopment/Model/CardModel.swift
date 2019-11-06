@@ -17,4 +17,5 @@ struct CardModel {
     // と言うOptionにすることができる
     let date: String
     let body: String
+    let goodCount: Int
 }

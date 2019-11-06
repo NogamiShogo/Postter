@@ -29,20 +29,26 @@ final class HomeTableViewCell: UITableViewCell {
         didSet {
             bodyLabel.text = model.body
             dateLabel.text = model.date
+            goodCount.text = "\(model.goodCount)"
         }
     }
     
+    var indexPath = IndexPath()
+    
     // MARK: - Action
     
-    @IBAction func goodButtonDidTap(_ sender: Any) {
-        let goodBool = AppContext.shared.goodBool
-        let items = AppContext.shared.items
+    @IBAction func goodButtonDidTap(sender: UIButton) {
         
-        if goodBool[0] == true {
-            
-        } else {
-            
-        }
+        //let goodBool = AppContext.shared.goodBool
+        
+        let HV = HomeViewController()
+        
+        let postId = HV.items[indexPath[1]].No
+        
+        API.shared.goodAdd(GoodAddRequest(postId: postId), successHandler: { result in
+        })
+        
+        print(indexPath[1])
         
     }
     

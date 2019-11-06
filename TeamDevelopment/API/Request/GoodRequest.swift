@@ -23,7 +23,7 @@ extension GoodAddRequest: APITargetType {
     typealias Response = [Item]
 
     var path: String {
-        return "/goodAdd"
+        return "/good/1"
     }
 
     var method: Method {
@@ -40,11 +40,11 @@ extension GoodDeleteRequest: APITargetType {
     typealias Response = [Item]
 
     var path: String {
-        return "/goodDelete"
+        return "/good/5"
     }
 
     var method: Method {
-        return .put
+        return .delete
     }
 
     var task: Task {
