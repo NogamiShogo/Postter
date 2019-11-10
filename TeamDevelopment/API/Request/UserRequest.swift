@@ -6,4 +6,36 @@
 //  Copyright © 2019 shogo nogami. All rights reserved.
 //
 
-import Foundation
+import Moya
+
+enum UserRequest {
+        case getPassWord
+}
+
+extension UserRequest: BaseTargetType {
+    typealias Response = [User]
+    
+    var path: String {
+        switch self {
+        case .getPassWord:
+            return ""
+        }
+    }
+    
+    var method: Method {
+        switch self {
+        case .getPassWord:
+            return .get
+        }
+    }
+    
+    var task: Task {
+        switch self {
+        case .getPassWord:
+            return .requestPlain
+        }
+    }
+    
+    
+    
+}

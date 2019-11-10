@@ -19,6 +19,10 @@ final class SettingViewController: UITableViewController, Storyboardable {
         return viewController
     }
 
+    // MARK: - Outlet
+    
+    @IBOutlet weak var AccountID: UILabel!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -27,11 +31,27 @@ final class SettingViewController: UITableViewController, Storyboardable {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if AppContext.shared.ID != nil {
+            AccountID.text = "\(AppContext.shared.ID!)"
+        } else {
+            AccountID.text = "未ログイン"
+        }
+    }
+    
     // MARK: - Private
     
     private func setupUI() {
-        
     }
     
+    @IBAction func LogOutButton(_ sender: Any) {
+        AppContext.shared.ID = nil
+        
+        let viewController = LoginViewController.build()
+        //navigationController?.pushViewController(viewController, animated: true)
+        present(viewController, animated: true)
+    }
     
 }

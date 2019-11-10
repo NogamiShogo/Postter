@@ -9,11 +9,11 @@
 import Foundation
 import Moya
 
-protocol APITargetType: TargetType {
+protocol BaseTargetType: TargetType {
     associatedtype Response: Codable
 }
 
-extension APITargetType {
+extension BaseTargetType {
 
     var baseURL: URL {
         return URL(string: AppConstant.baseURL)!
@@ -31,3 +31,5 @@ extension APITargetType {
         return Data()
     }
 }
+
+typealias Parameters = [String: Any]

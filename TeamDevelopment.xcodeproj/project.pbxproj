@@ -9,17 +9,20 @@
 /* Begin PBXBuildFile section */
 		07B94072690E49D818BEC098 /* Pods_TeamDevelopmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 514DDBA74BD957F25D9A70A0 /* Pods_TeamDevelopmentTests.framework */; };
 		2100EF672350436F0069F384 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF662350436F0069F384 /* API.swift */; };
-		2100EF6A23504DCA0069F384 /* GetItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF6923504DCA0069F384 /* GetItemsRequest.swift */; };
-		2100EF6C23504E0C0069F384 /* APITargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF6B23504E0C0069F384 /* APITargetType.swift */; };
+		2100EF6C23504E0C0069F384 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF6B23504E0C0069F384 /* BaseTargetType.swift */; };
 		2100EF6E23504EEC0069F384 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF6D23504EEC0069F384 /* AppConstant.swift */; };
 		2100EF712350507F0069F384 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF702350507F0069F384 /* Item.swift */; };
 		2100EF77235053300069F384 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2100EF76235053300069F384 /* HomeTableViewCell.xib */; };
 		2100EF79235054840069F384 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF78235054840069F384 /* CardModel.swift */; };
 		2100EF7B23505D960069F384 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100EF7A23505D960069F384 /* HomeTableViewCell.swift */; };
-		2102BB3C23702E2100E85DEC /* GoodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB3B23702E2100E85DEC /* GoodRequest.swift */; };
-		2102BB3E23702E4700E85DEC /* BadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB3D23702E4700E85DEC /* BadRequest.swift */; };
 		2102BB402370329700E85DEC /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB3F2370329700E85DEC /* AppContext.swift */; };
-		21066B71236029A0009FC203 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21066B70236029A0009FC203 /* PostRequest.swift */; };
+		2102BB45237540B900E85DEC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB44237540B900E85DEC /* LoginViewController.swift */; };
+		2102BB47237540CC00E85DEC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2102BB46237540CC00E85DEC /* Login.storyboard */; };
+		2102BB552377218F00E85DEC /* ItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB542377218F00E85DEC /* ItemRequest.swift */; };
+		2102BB57237721A000E85DEC /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB56237721A000E85DEC /* UserRequest.swift */; };
+		2102BB59237721BA00E85DEC /* isGoodBadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB58237721BA00E85DEC /* isGoodBadRequest.swift */; };
+		2102BB5B237722A300E85DEC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB5A237722A300E85DEC /* User.swift */; };
+		2102BB5D237722B100E85DEC /* isGoodBad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102BB5C237722B100E85DEC /* isGoodBad.swift */; };
 		21C5907E234DAD070077ACB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5907D234DAD070077ACB9 /* AppDelegate.swift */; };
 		21C59080234DAD070077ACB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C5907F234DAD070077ACB9 /* SceneDelegate.swift */; };
 		21C59082234DAD070077ACB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C59081234DAD070077ACB9 /* ContentView.swift */; };
@@ -64,17 +67,20 @@
 /* Begin PBXFileReference section */
 		205E8FA92464A6D29CFCAAD1 /* Pods-TeamDevelopmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamDevelopmentTests.release.xcconfig"; path = "Target Support Files/Pods-TeamDevelopmentTests/Pods-TeamDevelopmentTests.release.xcconfig"; sourceTree = "<group>"; };
 		2100EF662350436F0069F384 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		2100EF6923504DCA0069F384 /* GetItemsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetItemsRequest.swift; sourceTree = "<group>"; };
-		2100EF6B23504E0C0069F384 /* APITargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetType.swift; sourceTree = "<group>"; };
+		2100EF6B23504E0C0069F384 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		2100EF6D23504EEC0069F384 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		2100EF702350507F0069F384 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2100EF76235053300069F384 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		2100EF78235054840069F384 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		2100EF7A23505D960069F384 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		2102BB3B23702E2100E85DEC /* GoodRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodRequest.swift; sourceTree = "<group>"; };
-		2102BB3D23702E4700E85DEC /* BadRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadRequest.swift; sourceTree = "<group>"; };
 		2102BB3F2370329700E85DEC /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
-		21066B70236029A0009FC203 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		2102BB44237540B900E85DEC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2102BB46237540CC00E85DEC /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		2102BB542377218F00E85DEC /* ItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRequest.swift; sourceTree = "<group>"; };
+		2102BB56237721A000E85DEC /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		2102BB58237721BA00E85DEC /* isGoodBadRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isGoodBadRequest.swift; sourceTree = "<group>"; };
+		2102BB5A237722A300E85DEC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2102BB5C237722B100E85DEC /* isGoodBad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isGoodBad.swift; sourceTree = "<group>"; };
 		21C5907A234DAD070077ACB9 /* Postter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Postter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C5907D234DAD070077ACB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21C5907F234DAD070077ACB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,12 +158,20 @@
 		2100EF6823504D9F0069F384 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				2100EF6923504DCA0069F384 /* GetItemsRequest.swift */,
-				21066B70236029A0009FC203 /* PostRequest.swift */,
-				2102BB3B23702E2100E85DEC /* GoodRequest.swift */,
-				2102BB3D23702E4700E85DEC /* BadRequest.swift */,
+				2102BB542377218F00E85DEC /* ItemRequest.swift */,
+				2102BB56237721A000E85DEC /* UserRequest.swift */,
+				2102BB58237721BA00E85DEC /* isGoodBadRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		2102BB4323753E1300E85DEC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2102BB46237540CC00E85DEC /* Login.storyboard */,
+				2102BB44237540B900E85DEC /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		21C59071234DAD070077ACB9 = {
@@ -249,6 +263,7 @@
 			children = (
 				21C590CC234DB6A50077ACB9 /* Launch */,
 				21C590CA234DB64B0077ACB9 /* Main */,
+				2102BB4323753E1300E85DEC /* Login */,
 				21C590B9234DB2E00077ACB9 /* Home */,
 				21C590BA234DB2E90077ACB9 /* Tweet */,
 				21C590BB234DB3020077ACB9 /* Setting */,
@@ -260,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				2100EF702350507F0069F384 /* Item.swift */,
+				2102BB5A237722A300E85DEC /* User.swift */,
+				2102BB5C237722B100E85DEC /* isGoodBad.swift */,
 				2100EF78235054840069F384 /* CardModel.swift */,
 			);
 			path = Model;
@@ -269,7 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				2100EF662350436F0069F384 /* API.swift */,
-				2100EF6B23504E0C0069F384 /* APITargetType.swift */,
+				2100EF6B23504E0C0069F384 /* BaseTargetType.swift */,
 				2100EF6823504D9F0069F384 /* Request */,
 			);
 			path = API;
@@ -493,6 +510,7 @@
 				21C59084234DAD080077ACB9 /* Assets.xcassets in Resources */,
 				2100EF77235053300069F384 /* HomeTableViewCell.xib in Resources */,
 				21C590D0234DB71C0077ACB9 /* Main.storyboard in Resources */,
+				2102BB47237540CC00E85DEC /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,23 +625,25 @@
 				2100EF672350436F0069F384 /* API.swift in Sources */,
 				2102BB402370329700E85DEC /* AppContext.swift in Sources */,
 				21C590D5234DB77D0077ACB9 /* SettingNavigationController.swift in Sources */,
+				2102BB59237721BA00E85DEC /* isGoodBadRequest.swift in Sources */,
+				2102BB5B237722A300E85DEC /* User.swift in Sources */,
 				21C590CE234DB6FB0077ACB9 /* MainViewController.swift in Sources */,
 				2100EF712350507F0069F384 /* Item.swift in Sources */,
-				21066B71236029A0009FC203 /* PostRequest.swift in Sources */,
 				2100EF79235054840069F384 /* CardModel.swift in Sources */,
 				21C5907E234DAD070077ACB9 /* AppDelegate.swift in Sources */,
 				2100EF7B23505D960069F384 /* HomeTableViewCell.swift in Sources */,
 				21C590B4234DB1E80077ACB9 /* NSObject+.swift in Sources */,
 				2100EF6E23504EEC0069F384 /* AppConstant.swift in Sources */,
+				2102BB45237540B900E85DEC /* LoginViewController.swift in Sources */,
+				2102BB57237721A000E85DEC /* UserRequest.swift in Sources */,
 				21C590B7234DB2940077ACB9 /* Storyboardable.swift in Sources */,
-				2100EF6C23504E0C0069F384 /* APITargetType.swift in Sources */,
+				2100EF6C23504E0C0069F384 /* BaseTargetType.swift in Sources */,
 				21C590C1234DB5300077ACB9 /* TweetViewController.swift in Sources */,
-				2102BB3E23702E4700E85DEC /* BadRequest.swift in Sources */,
+				2102BB552377218F00E85DEC /* ItemRequest.swift in Sources */,
+				2102BB5D237722B100E85DEC /* isGoodBad.swift in Sources */,
 				21C59080234DAD070077ACB9 /* SceneDelegate.swift in Sources */,
-				2100EF6A23504DCA0069F384 /* GetItemsRequest.swift in Sources */,
 				21C590BD234DB4C90077ACB9 /* HomeViewController.swift in Sources */,
 				21C590C6234DB56A0077ACB9 /* SettingViewController.swift in Sources */,
-				2102BB3C23702E2100E85DEC /* GoodRequest.swift in Sources */,
 				21C59082234DAD070077ACB9 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

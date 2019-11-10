@@ -16,7 +16,7 @@ final class API {
     private let provider = MoyaProvider<MultiTarget>()
     
     // 引数にメソッドを定義 @escapingをつける
-    func get(_ request: GetItemsRequest, successHandler: @escaping (GetItemsRequest.Response) -> Void) {
+    func callItem(_ request: ItemRequest, successHandler: @escaping (ItemRequest.Response) -> Void) {
         let target = MultiTarget(request)
         
         self.provider.request(target) { response in
@@ -27,7 +27,7 @@ final class API {
                     print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
                     
                     // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode(GetItemsRequest.Response.self, from: result.data))
+                    successHandler(try JSONDecoder().decode((ItemRequest.Response).self, from: result.data))
                 } catch {
                     print(error)
                 }
@@ -37,7 +37,7 @@ final class API {
         }
     }
     
-    func post(_ request: PostRequest, successHandler: @escaping (PostRequest.Response) -> Void) {
+    func callUser(_ request: UserRequest, successHandler: @escaping (UserRequest.Response) -> Void) {
         let target = MultiTarget(request)
         
         self.provider.request(target) { response in
@@ -45,11 +45,10 @@ final class API {
             case .success(let result):
                 do {
                     // 結果表示
-                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
-                    print("postSuccess")
+                    print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
                     
                     // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode(PostRequest.Response.self, from: result.data))
+                    successHandler(try JSONDecoder().decode((UserRequest.Response).self, from: result.data))
                 } catch {
                     print(error)
                 }
@@ -59,7 +58,7 @@ final class API {
         }
     }
     
-    func goodAdd(_ request: GoodAddRequest, successHandler: @escaping (GoodAddRequest.Response) -> Void) {
+    func callIsGoodBad(_ request: isGoodBadRequest, successHandler: @escaping (isGoodBadRequest.Response) -> Void) {
         let target = MultiTarget(request)
         
         self.provider.request(target) { response in
@@ -67,11 +66,10 @@ final class API {
             case .success(let result):
                 do {
                     // 結果表示
-                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
-                    print("goodAddSuccess")
+                    print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
                     
                     // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode(GoodAddRequest.Response.self, from: result.data))
+                    successHandler(try JSONDecoder().decode((isGoodBadRequest.Response).self, from: result.data))
                 } catch {
                     print(error)
                 }
@@ -81,72 +79,7 @@ final class API {
         }
     }
     
-    func goodDelete(_ request: GoodDeleteRequest, successHandler: @escaping (GoodDeleteRequest.Response) -> Void) {
-        let target = MultiTarget(request)
-        
-        self.provider.request(target) { response in
-            switch response.result {
-            case .success(let result):
-                do {
-                    // 結果表示
-                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
-                    print("goodDeleteSuccess")
-                    
-                    // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode(GoodDeleteRequest.Response.self, from: result.data))
-                } catch {
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
     
-    func badAdd(_ request: BadAddRequest, successHandler: @escaping (BadAddRequest.Response) -> Void) {
-        let target = MultiTarget(request)
-        
-        self.provider.request(target) { response in
-            switch response.result {
-            case .success(let result):
-                do {
-                    // 結果表示
-                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
-                    print("badAddSuccess")
-                    
-                    // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode(BadAddRequest.Response.self, from: result.data))
-                } catch {
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func badDelete(_ request: BadDeleteRequest, successHandler: @escaping (BadDeleteRequest.Response) -> Void) {
-        let target = MultiTarget(request)
-        
-        self.provider.request(target) { response in
-            switch response.result {
-            case .success(let result):
-                do {
-                    // 結果表示
-                    //print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
-                    print("badDeleteSuccess")
-                    
-                    // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode(BadDeleteRequest.Response.self, from: result.data))
-                } catch {
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
     // MARK: - Private
     
     private init() {}

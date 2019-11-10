@@ -9,13 +9,13 @@
         <!--Setting View Controller-->
         <scene sceneID="ErG-sg-xY9">
             <objects>
-                <tableViewController id="DiL-X9-Ntp" customClass="SettingViewController" customModule="TeamDevelopment" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="DiL-X9-Ntp" customClass="SettingViewController" customModule="Postter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qf8-fS-G8k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection headerTitle="設定" id="EjH-gk-A75">
+                            <tableViewSection headerTitle="アカウント" id="EjH-gk-A75">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hnB-6e-qdC">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
@@ -23,6 +23,20 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hnB-6e-qdC" id="rHg-CQ-3g5">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClM-Dh-ykp">
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ClM-Dh-ykp" firstAttribute="leading" secondItem="rHg-CQ-3g5" secondAttribute="leadingMargin" id="10K-O6-mxn"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ClM-Dh-ykp" secondAttribute="bottom" id="KUh-Zv-G4K"/>
+                                                <constraint firstItem="ClM-Dh-ykp" firstAttribute="top" secondItem="rHg-CQ-3g5" secondAttribute="topMargin" id="NzX-OU-cDZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ClM-Dh-ykp" secondAttribute="trailing" id="yqB-xA-bJq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iqm-FS-je2">
@@ -43,7 +57,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="予備" id="LeU-61-h7R">
+                            <tableViewSection headerTitle="設定" id="LeU-61-h7R">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="294-Lb-Gm5">
                                         <rect key="frame" x="0.0" y="242" width="414" height="43.5"/>
@@ -71,6 +85,33 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="NEp-t2-XC2">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QPS-jM-y3f">
+                                        <rect key="frame" x="0.0" y="408.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QPS-jM-y3f" id="LZV-qA-BfR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4I-bI-pjs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <state key="normal" title="ログアウト"/>
+                                                    <connections>
+                                                        <action selector="LogOutButton:" destination="DiL-X9-Ntp" eventType="touchUpInside" id="qCU-MJ-MCB"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="M4I-bI-pjs" firstAttribute="leading" secondItem="LZV-qA-BfR" secondAttribute="leading" id="3Vd-o2-g3Z"/>
+                                                <constraint firstItem="M4I-bI-pjs" firstAttribute="top" secondItem="LZV-qA-BfR" secondAttribute="top" id="Nyu-TX-sNh"/>
+                                                <constraint firstAttribute="trailing" secondItem="M4I-bI-pjs" secondAttribute="trailing" id="Y1R-77-brh"/>
+                                                <constraint firstAttribute="bottom" secondItem="M4I-bI-pjs" secondAttribute="bottom" id="ckD-cz-QfH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="DiL-X9-Ntp" id="j45-By-GeY"/>
@@ -79,6 +120,9 @@
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="AccountID" destination="ClM-Dh-ykp" id="hbs-G2-6pp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8x-Ji-Zc6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

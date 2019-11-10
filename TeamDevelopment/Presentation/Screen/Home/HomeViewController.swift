@@ -29,8 +29,8 @@ final class HomeViewController: UIViewController, Storyboardable {
     }
     
     private var cards: [CardModel] = [
-        CardModel(date: "1", body: "dammy", goodCount: 3),
-        CardModel(date: "1", body: "dammy", goodCount: 3)
+        CardModel(date: "1", body: "ああああああああああああああああああああああああああ", goodCount: 3),
+        CardModel(date: "1", body: "abcdefghijklmnopqrstuvwxyz", goodCount: 3)
     ]
 
     // MARK: - Outlet
@@ -49,6 +49,11 @@ final class HomeViewController: UIViewController, Storyboardable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setItems()
+        
+        if AppContext.shared.ID == nil {
+            let viewController = LoginViewController.build()
+            present(viewController, animated: true)
+        }
     }
 
     // MARK: - Private
@@ -72,7 +77,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     private func setItems() {
 
-        API.shared.get(GetItemsRequest(page: 1), successHandler: { result in
+        API.shared.callItem(.get, successHandler: { result in
             self.items = result
             
             self.cards = self.cards.filter { $0.body == "" }

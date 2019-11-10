@@ -34,6 +34,15 @@ final class AppContext {
         }
     }
     
+    var ID: Int? {
+        get {
+            return (userDefaults.object(forKey: "ID") as? Int)
+        }
+        set {
+            userDefaults.set(newValue, forKey: "ID")
+        }
+    }
+    
     // MARK: - Private
     
     private init() {
