@@ -7,6 +7,7 @@ target 'TeamDevelopment' do
 
   pod 'Moya'
   pod 'RxSwift'
+  pod 'RxCocoa'
 
   # Pods for TeamDevelopment
 

@@ -9,6 +9,7 @@
 // APIのURLなどの定数を置いておくstruct
 struct AppConstant {
 
-    static let domain = "https://postter.serveo.net"
+    //static let domain = "https://postter.serveo.net"
+    static let domain = "https://2dda45e2.ngrok.io"
     static let baseURL = "\(domain)/postter"
 }

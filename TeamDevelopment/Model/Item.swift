@@ -13,5 +13,6 @@ struct Item: Codable {
     let date: String
     let No: Int
     let good: Int
+    let userId: Int
 }
 

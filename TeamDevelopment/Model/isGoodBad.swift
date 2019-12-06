@@ -9,6 +9,5 @@
 import Foundation
 
 struct isGoodBad: Codable {
-    let isGood: Bool
-    let isBad: Bool
+    let isGood: Int
 }

@@ -18,7 +18,7 @@ extension UserRequest: BaseTargetType {
     var path: String {
         switch self {
         case .getPassWord:
-            return ""
+            return "/user"
         }
     }
     

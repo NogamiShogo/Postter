@@ -21,16 +21,11 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     // MARK: - Proprerty
     
-    var items: [Item] = [] {
-        didSet {
-            //AppContext.shared.items = items
-            tableView.reloadData()
-        }
-    }
+    private var items: [Item] = []
     
     private var cards: [CardModel] = [
-        CardModel(date: "1", body: "ああああああああああああああああああああああああああ", goodCount: 3),
-        CardModel(date: "1", body: "abcdefghijklmnopqrstuvwxyz", goodCount: 3)
+        CardModel(date: "1", body: "ああああああああああああああああああああああああああ", goodCount: 3, postId: 1),
+        CardModel(date: "1", body: "abcdefghijklmnopqrstuvwxyz", goodCount: 3, postId: 2)
     ]
 
     // MARK: - Outlet
@@ -48,7 +43,12 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setItems()
+        setItems(complete: {
+            DispatchQueue.main.async {
+                print("reloaddata")
+                self.tableView.reloadData()
+            }
+        })
         
         if AppContext.shared.ID == nil {
             let viewController = LoginViewController.build()
@@ -62,6 +62,7 @@ final class HomeViewController: UIViewController, Storyboardable {
         self.view.sendSubviewToBack(tableView)
         
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.allowsSelection = false
         //tableView.separatorStyle = .none
         
@@ -75,26 +76,43 @@ final class HomeViewController: UIViewController, Storyboardable {
 
     }
     
-    private func setItems() {
-
-        API.shared.callItem(.get, successHandler: { result in
-            self.items = result
+    private func setItems ( complete: @escaping () -> Void) {
+        
+        let queue = DispatchQueue.global(qos: .default)
+        queue.async {
+            API.shared.callItem(.get, successHandler: { result in
             
-            self.cards = self.cards.filter { $0.body == "" }
-            
-            for i in (0..<self.items.count).reversed() {
-                self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good) )
-            }
-
-            self.tableView.reloadData()
-        })
+                self.items = result
+                
+                print("itemsget")
+                
+                self.cards = self.cards.filter { $0.body == "" }
+                
+                for i in (0..<self.items.count).reversed() {
+                    self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good, postId: self.items[i].No))
+                    print("aaa")
+                }
+                DispatchQueue.main.async {
+                    complete()
+                }
+            })
+            complete()
+        }
+        
+        print("setItems")
     }
+    
 
     
     // MARK: - Action
     
     @IBAction private func reload(_ sender: Any) {
-        setItems()
+        setItems(complete: {
+            DispatchQueue.main.async {
+                print("reloaddata")
+                self.tableView.reloadData()
+            }
+        })
     }
     
     @IBAction private func TweetButtonDidTap(_ sender: Any) {
@@ -102,6 +120,8 @@ final class HomeViewController: UIViewController, Storyboardable {
         present(viewController, animated: true)
     }
 }
+
+
 
 // MARK: - UITableViewDataSource
 
@@ -128,6 +148,8 @@ extension HomeViewController: UITableViewDataSource {
             
             cell.indexPath = indexPath
             cell.model = cards[indexPath.row]
+            cell.delegate = self
+            
             // 3.このif文を書いてHomeTableViewCellであることを保証し、
             // インスタンス変数modelにアクセスする
             // このas?は「ダウンキャスト」を行なっている
@@ -142,4 +164,17 @@ extension HomeViewController: UITableViewDataSource {
             fatalError("invaild section")
         }
     }
+}
+
+extension HomeViewController: UITableViewDelegate, CustomCellUpdater {
+    func updateTableView() {
+        setItems(complete: {
+            DispatchQueue.main.async {
+                print("reloaddata")
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    
 }

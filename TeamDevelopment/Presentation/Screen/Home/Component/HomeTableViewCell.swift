@@ -12,6 +12,10 @@ import UIKit
 // Storyboard - ViewControllerクラスの関係と
 // xib - 〇〇Cellクラスの関係は同じ
 // UIViewControllerではなく〇〇Cellを継承させること
+protocol CustomCellUpdater {
+    func updateTableView()
+}
+
 final class HomeTableViewCell: UITableViewCell {
 
     // MARK: - Outlet
@@ -21,12 +25,12 @@ final class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var goodCount: UILabel!
     
     @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet weak var goodButton: UIButton!
     
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         //dateLabel.numberOfLines = 1
     }
@@ -41,7 +45,6 @@ final class HomeTableViewCell: UITableViewCell {
         //bodyLabel.minimumScaleFactor = 0.8
         //bodyLabel.adjustsFontSizeToFitWidth = true
         
-
         // Configure the view for the selected state
     }
 
@@ -57,32 +60,109 @@ final class HomeTableViewCell: UITableViewCell {
     
     var indexPath = IndexPath()
     
+    var delegate: CustomCellUpdater?
+    
+    // MARK: - Private
+    
+    func handleTap() {
+        self.delegate?.updateTableView()
+    }
+    
     // MARK: - Action
     
     @IBAction func goodButtonDidTap(sender: UIButton) {
         
-        //let goodBool = AppContext.shared.goodBool
+        var items: [Item] = []
+        var isGood: [Int] = []
+        var postId = 0
+        var Good = true
         
-        let HV = HomeViewController()
-        let postId = HV.items[indexPath[1]].No
-        var isGoodBad : [isGoodBad] = []
+        let queue = DispatchQueue.global(qos: .default)
         
-        API.shared.callIsGoodBad(.get(UserID: AppContext.shared.ID!), successHandler: { result in
-            isGoodBad = result
-        })
-        
-        if isGoodBad[postId].isGood {
-            API.shared.callItem(.goodAdd(postId: postId), successHandler: { _ in
+        queue.sync {
+            API.shared.callItem(.get, successHandler: { result in
+            items = result
+            
+            postId = items[items.count - self.indexPath[1] - 1].No
+            
             })
-        } else {
-            API.shared.callItem(.goodDelete(postId: postId), successHandler: { _ in
+            
+            API.shared.callIsGood(.get(userId: AppContext.shared.ID!), successHandler: { result in
+                isGood = result
             })
+
+            for i in 0..<isGood.count {
+                if isGood[i] == postId {
+                Good = false
+                }
+            }
+
+            if Good {
+                API.shared.callItem(.goodAdd(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                })
+            } else {
+                API.shared.callItem(.goodDelete(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                })
+            }
+                    
+            self.handleTap()
+                
+            
+            
         }
         
-        print(indexPath[1])
-        
+        API.shared.callItem(.get, successHandler: { result in
+            items = result
+            
+            let postId = items[items.count - self.indexPath[1] - 1].No
+            let queue = DispatchQueue.global(qos: .default)
+            
+            API.shared.callIsGood(.get(userId: AppContext.shared.ID!), successHandler: { result in
+                isGood = result
+                
+                var Good = true
+                
+                queue.sync {
+                    for i in 0..<isGood.count {
+                        if isGood[i] == postId {
+                            Good = false
+                        }
+                    }
+                    
+                    if Good {
+                        API.shared.callItem(.goodAdd(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                        })
+                    } else {
+                        API.shared.callItem(.goodDelete(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                        })
+                    }
+                    
+                    self.handleTap()
+                }
+            })
+            
+            //self.handleTap()
+        })
     }
     
-    @IBAction func badButtonDidTap(_ sender: Any) {
+    
+    
+    @IBAction func deleteButtonDidTap(_ sender: Any) {
+        
+        var items: [Item] = []
+         
+        API.shared.callItem(.get, successHandler: { result in
+            items = result
+            print("get")
+            
+            let userId = items[items.count - self.indexPath[1] - 1].userId
+            let postId = items[items.count - self.indexPath[1] - 1].No
+            print(userId, postId)
+            
+            API.shared.callItem(.delete(No: postId, userId: AppContext.shared.ID!), successHandler: { result in
+                self.handleTap()
+                print("delete")
+            })
+        })
     }
 }

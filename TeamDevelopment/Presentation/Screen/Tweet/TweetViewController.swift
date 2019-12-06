@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class TweetViewController: UIViewController, Storyboardable, UITextFieldDelegate{
     
@@ -27,11 +29,24 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     @IBOutlet private weak var textField: UITextField!
     
+    private let disposeBag = DisposeBag()
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        textField.rx.text.subscribe(onNext: { text in
+            
+            if self.textField.text == "" {
+                self.tweetButton.isEnabled = false
+            } else {
+                self.tweetButton.isEnabled = true
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
     
@@ -48,7 +63,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     // MARK: - Private
     
     private func setupUI() {
-        //tweetButton.isEnabled = false
+        
     }
     
     // MARK: - Action
@@ -63,11 +78,8 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
-        if textField.text != "" {
-            API.shared.post(PostRequest(post: textField.text!), successHandler: { result in
-            })
-            textField.text = ""
-        }
+        API.shared.callItem(.post(post: textField.text!, userId: AppContext.shared.ID!), successHandler: { result in
+        })
         
         self.dismiss(animated: true)
     }

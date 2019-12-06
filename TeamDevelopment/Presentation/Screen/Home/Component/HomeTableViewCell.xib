@@ -8,11 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="87" id="Vvf-1m-cog" customClass="HomeTableViewCell" customModule="Postter" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="94" id="Vvf-1m-cog" customClass="HomeTableViewCell" customModule="Postter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vvf-1m-cog" id="O7L-qP-gog">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本文" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JiS-E6-9Lb">
@@ -29,23 +29,23 @@
                         <nil key="highlightedColor"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QcA-Sc-baA">
-                        <rect key="frame" x="107" y="58" width="16" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QcA-Sc-baA">
+                        <rect key="frame" x="108" y="60" width="23" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWA-ev-zWv">
-                        <rect key="frame" x="132" y="58" width="30" height="28"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <state key="normal" title="Bad"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ge-56-MsE">
+                        <rect key="frame" x="356" y="58" width="31" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="削除"/>
                         <connections>
-                            <action selector="badButtonDidTap:" destination="Vvf-1m-cog" eventType="touchUpInside" id="K0O-9z-PYI"/>
+                            <action selector="deleteButtonDidTap:" destination="Vvf-1m-cog" eventType="touchUpInside" id="AfT-Dz-lqp"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gml-cs-sYN">
-                        <rect key="frame" x="60" y="58" width="40" height="28"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gml-cs-sYN">
+                        <rect key="frame" x="60" y="68" width="40" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="Good"/>
                         <connections>
@@ -57,25 +57,22 @@
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="top" secondItem="Qj5-hS-7Zc" secondAttribute="bottom" constant="8" id="0uv-V6-i4C"/>
                     <constraint firstItem="QcA-Sc-baA" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="8" id="2ND-BY-oos"/>
                     <constraint firstItem="Qj5-hS-7Zc" firstAttribute="trailing" secondItem="O7L-qP-gog" secondAttribute="trailing" constant="-16" id="5Sx-dz-LFC"/>
-                    <constraint firstItem="cWA-ev-zWv" firstAttribute="bottom" secondItem="O7L-qP-gog" secondAttribute="bottom" constant="-4" id="DNy-i7-Rba"/>
-                    <constraint firstItem="cWA-ev-zWv" firstAttribute="leading" secondItem="QcA-Sc-baA" secondAttribute="trailing" constant="4" id="I2j-oX-axg"/>
                     <constraint firstItem="Qj5-hS-7Zc" firstAttribute="top" secondItem="O7L-qP-gog" secondAttribute="top" constant="8" id="JLe-ZO-V6h"/>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leading" constant="60" id="MmJ-RD-yW4"/>
                     <constraint firstItem="Gml-cs-sYN" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leading" constant="60" id="Ncw-1X-uSw"/>
-                    <constraint firstItem="Gml-cs-sYN" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="8" id="Pme-47-LVZ"/>
+                    <constraint firstItem="Gml-cs-sYN" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="4" id="Pme-47-LVZ"/>
+                    <constraint firstAttribute="bottom" secondItem="Gml-cs-sYN" secondAttribute="bottom" constant="4" id="X7I-25-Qy8"/>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="trailing" secondItem="O7L-qP-gog" secondAttribute="trailing" constant="-16" id="j4A-y1-D9O"/>
-                    <constraint firstItem="Gml-cs-sYN" firstAttribute="bottom" secondItem="O7L-qP-gog" secondAttribute="bottom" constant="-4" id="paE-DK-KlO"/>
-                    <constraint firstItem="QcA-Sc-baA" firstAttribute="bottom" secondItem="O7L-qP-gog" secondAttribute="bottom" constant="-4" id="pxY-H1-ZDq"/>
-                    <constraint firstItem="cWA-ev-zWv" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="8" id="uzi-RA-W6K"/>
-                    <constraint firstItem="QcA-Sc-baA" firstAttribute="leading" secondItem="Gml-cs-sYN" secondAttribute="trailing" constant="4" id="zvB-fr-omg"/>
+                    <constraint firstItem="QcA-Sc-baA" firstAttribute="leading" secondItem="Gml-cs-sYN" secondAttribute="trailing" constant="8" id="zvB-fr-omg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="bodyLabel" destination="JiS-E6-9Lb" id="z4k-B4-bF7"/>
                 <outlet property="dateLabel" destination="Qj5-hS-7Zc" id="yzn-f5-1f3"/>
+                <outlet property="goodButton" destination="Gml-cs-sYN" id="taL-4g-gou"/>
                 <outlet property="goodCount" destination="QcA-Sc-baA" id="2N4-Ce-oaG"/>
             </connections>
-            <point key="canvasLocation" x="253.62318840579712" y="51.897321428571423"/>
+            <point key="canvasLocation" x="247.82608695652175" y="41.517857142857139"/>
         </tableViewCell>
     </objects>
 </document>

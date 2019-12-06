@@ -18,4 +18,5 @@ struct CardModel {
     let date: String
     let body: String
     let goodCount: Int
+    let postId: Int
 }

@@ -39,6 +39,11 @@ final class SettingViewController: UITableViewController, Storyboardable {
         } else {
             AccountID.text = "未ログイン"
         }
+        
+        if AppContext.shared.ID == nil {
+            let viewController = LoginViewController.build()
+            present(viewController, animated: true)
+        }
     }
     
     // MARK: - Private

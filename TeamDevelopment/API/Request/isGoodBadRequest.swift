@@ -8,17 +8,17 @@
 
 import Moya
 
-enum isGoodBadRequest {
-    case get(UserID: Int)
+enum isGoodRequest {
+    case get(userId: Int)
 }
 
-extension isGoodBadRequest: BaseTargetType {
-    typealias Response = [isGoodBad]
+extension isGoodRequest: BaseTargetType {
+    typealias Response = [Int]
     
     var path: String {
         switch self {
         case .get:
-            return ""
+            return "/good"
         }
     }
     
@@ -31,9 +31,9 @@ extension isGoodBadRequest: BaseTargetType {
     
     var task: Task {
         switch self {
-        case .get(let UserID):
+        case .get(let userId):
             let parameters: Parameters = [
-                "UserID": UserID
+                "userId": userId
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }

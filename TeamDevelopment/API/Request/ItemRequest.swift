@@ -9,11 +9,11 @@
 import Moya
 
 enum ItemRequest {
-
     case get
-    case post (post: String)
-    case goodAdd (postId: Int)
-    case goodDelete (postId: Int)
+    case post (post: String, userId: Int)
+    case delete (No: Int, userId: Int)
+    case goodAdd (userId: Int, No: Int)
+    case goodDelete (userId: Int, No: Int)
     case badAdd (postId: Int)
     case badDelete (postId: Int)
 }
@@ -29,6 +29,8 @@ extension ItemRequest: BaseTargetType {
         case .get:
             return ""
         case .post:
+            return ""
+        case .delete:
             return ""
         case .goodAdd:
             return "/good"
@@ -47,6 +49,8 @@ extension ItemRequest: BaseTargetType {
             return .get
         case .post:
             return .post
+        case .delete:
+            return .delete
         case .goodAdd:
             return .put
         case .goodDelete:
@@ -62,19 +66,28 @@ extension ItemRequest: BaseTargetType {
         switch self {
         case .get:
             return .requestPlain
-        case .post(let post):
+        case .post(let post, let userId):
             let parameters: Parameters = [
-                "post": post
+                "post": post,
+                "userId": userId
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .goodAdd(let postId):
+        case .delete(let userId, let No):
             let parameters: Parameters = [
-                "postId": postId
+                "No": No,
+                "userID": userId
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .goodDelete(let postId):
+        case .goodAdd(let userId, let No):
             let parameters: Parameters = [
-                "postId": postId
+                "userId": userId,
+                "No": No
+            ]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .goodDelete(let userId, let No):
+            let parameters: Parameters = [
+                "userId": userId,
+                "No": No
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .badAdd(let postId):

@@ -58,7 +58,7 @@ final class API {
         }
     }
     
-    func callIsGoodBad(_ request: isGoodBadRequest, successHandler: @escaping (isGoodBadRequest.Response) -> Void) {
+    func callIsGood(_ request: isGoodRequest, successHandler: @escaping (isGoodRequest.Response) -> Void) {
         let target = MultiTarget(request)
         
         self.provider.request(target) { response in
@@ -69,7 +69,7 @@ final class API {
                     print(try JSONSerialization.jsonObject(with: result.data, options: .allowFragments))
                     
                     // 引数のメソッドを実行
-                    successHandler(try JSONDecoder().decode((isGoodBadRequest.Response).self, from: result.data))
+                    successHandler(try JSONDecoder().decode((isGoodRequest.Response).self, from: result.data))
                 } catch {
                     print(error)
                 }
@@ -78,6 +78,7 @@ final class API {
             }
         }
     }
+    
     
     
     // MARK: - Private
