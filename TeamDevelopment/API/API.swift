@@ -13,7 +13,7 @@ import Moya
 final class API {
     
     static let shared = API()
-    private let provider = MoyaProvider<MultiTarget>()
+    private let provider: MoyaProvider<MultiTarget>
     
     // 引数にメソッドを定義 @escapingをつける
     func callItem(_ request: ItemRequest, successHandler: @escaping (ItemRequest.Response) -> Void) {
@@ -83,5 +83,7 @@ final class API {
     
     // MARK: - Private
     
-    private init() {}
+    private init() {
+        provider = MoyaProvider(plugins: [LoggerPlugin()])
+    }
 }
