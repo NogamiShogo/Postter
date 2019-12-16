@@ -45,6 +45,8 @@
 		21C590D5234DB77D0077ACB9 /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C590D4234DB77D0077ACB9 /* SettingNavigationController.swift */; };
 		4EE739BBB1D8262F98C85984 /* Pods_TeamDevelopmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC4F646B52BB720D63C8A29 /* Pods_TeamDevelopmentUITests.framework */; };
 		B7A2E976CFCD2CFBD7112007 /* Pods_TeamDevelopment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB1AC583331136753FFB5F4 /* Pods_TeamDevelopment.framework */; };
+		E28C8CE823A712CF00A9E2F2 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C8CE723A712CF00A9E2F2 /* URLRequest+.swift */; };
+		E28C8CEA23A712E700A9E2F2 /* LoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C8CE923A712E700A9E2F2 /* LoggerPlugin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		8AB1AC583331136753FFB5F4 /* Pods_TeamDevelopment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamDevelopment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A4490975351ADB7AF671C8 /* Pods-TeamDevelopment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamDevelopment.release.xcconfig"; path = "Target Support Files/Pods-TeamDevelopment/Pods-TeamDevelopment.release.xcconfig"; sourceTree = "<group>"; };
 		D137CBB440E75319659136CE /* Pods-TeamDevelopmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamDevelopmentUITests.debug.xcconfig"; path = "Target Support Files/Pods-TeamDevelopmentUITests/Pods-TeamDevelopmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E28C8CE723A712CF00A9E2F2 /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
+		E28C8CE923A712E700A9E2F2 /* LoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerPlugin.swift; sourceTree = "<group>"; };
 		EBC4F646B52BB720D63C8A29 /* Pods_TeamDevelopmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamDevelopmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -287,6 +291,7 @@
 			children = (
 				2100EF662350436F0069F384 /* API.swift */,
 				2100EF6B23504E0C0069F384 /* BaseTargetType.swift */,
+				E28C8CE923A712E700A9E2F2 /* LoggerPlugin.swift */,
 				2100EF6823504D9F0069F384 /* Request */,
 			);
 			path = API;
@@ -304,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				21C590B3234DB1E80077ACB9 /* NSObject+.swift */,
+				E28C8CE723A712CF00A9E2F2 /* URLRequest+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -643,8 +649,10 @@
 				2102BB5D237722B100E85DEC /* isGoodBad.swift in Sources */,
 				21C59080234DAD070077ACB9 /* SceneDelegate.swift in Sources */,
 				21C590BD234DB4C90077ACB9 /* HomeViewController.swift in Sources */,
+				E28C8CEA23A712E700A9E2F2 /* LoggerPlugin.swift in Sources */,
 				21C590C6234DB56A0077ACB9 /* SettingViewController.swift in Sources */,
 				21C59082234DAD070077ACB9 /* ContentView.swift in Sources */,
+				E28C8CE823A712CF00A9E2F2 /* URLRequest+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
