@@ -24,8 +24,10 @@ final class HomeViewController: UIViewController, Storyboardable {
     private var items: [Item] = []
     
     private var cards: [CardModel] = [
-        CardModel(date: "1", body: "ああああああああああああああああああああああああああ", goodCount: 3, postId: 1),
-        CardModel(date: "1", body: "abcdefghijklmnopqrstuvwxyz", goodCount: 3, postId: 2)
+        CardModel(date: "",
+                  body: "dammyData",
+                  goodCount: 404,
+                  postId: 0)
     ]
 
     // MARK: - Outlet
@@ -76,27 +78,54 @@ final class HomeViewController: UIViewController, Storyboardable {
 
     }
     
+    private func alert() {
+        let alert: UIAlertController = UIAlertController(title:"Caution",message:"NetWorkError",preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(
+            title: "cancel",
+            style: .default,
+            handler: nil
+        )
+        let retry = UIAlertAction(
+            title: "retry",
+            style: .default,
+            handler: { (UIAlertAction) in
+                self.setItems {
+                    DispatchQueue.main.async {
+                        print("reloaddata")
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        )
+        alert.addAction(cancel)
+        alert.addAction(retry)
+        present(alert, animated: true, completion: nil)
+    }
+    
     private func setItems ( complete: @escaping () -> Void) {
         
         let queue = DispatchQueue.global(qos: .default)
-        queue.async {
+        queue.async { [unowned self] in
             API.shared.callItem(.get, successHandler: { result in
             
                 self.items = result
                 
-                print("itemsget")
+                print("getItemssuccess")
                 
                 self.cards = self.cards.filter { $0.body == "" }
                 
                 for i in (0..<self.items.count).reversed() {
                     self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good, postId: self.items[i].No))
-                    print("aaa")
                 }
                 DispatchQueue.main.async {
                     complete()
+                    print("abc")
                 }
+            }, errorHandler: {_ in
+                self.alert()
+                print("getItemfailed")
             })
-            complete()
         }
         
         print("setItems")
@@ -107,7 +136,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     // MARK: - Action
     
     @IBAction private func reload(_ sender: Any) {
-        setItems(complete: {
+        setItems(complete: { [unowned self] in
             DispatchQueue.main.async {
                 print("reloaddata")
                 self.tableView.reloadData()
@@ -175,6 +204,4 @@ extension HomeViewController: UITableViewDelegate, CustomCellUpdater {
             }
         })
     }
-    
-    
 }

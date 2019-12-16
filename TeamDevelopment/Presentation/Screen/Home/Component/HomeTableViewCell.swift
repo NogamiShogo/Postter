@@ -25,6 +25,7 @@ final class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var goodCount: UILabel!
     
     @IBOutlet private weak var dateLabel: UILabel!
+    
     @IBOutlet weak var goodButton: UIButton!
     
     // MARK: - Lifecycle
@@ -74,14 +75,14 @@ final class HomeTableViewCell: UITableViewCell {
         
         var items: [Item] = []
         var isGood: [Int] = []
-        var postId = 0
-        var Good = true
         
         let queue = DispatchQueue.global(qos: .default)
         
-        queue.sync {
+        /*queue.sync {
             API.shared.callItem(.get, successHandler: { result in
             items = result
+            print("itemsget")
+                
             
             postId = items[items.count - self.indexPath[1] - 1].No
             
@@ -89,6 +90,7 @@ final class HomeTableViewCell: UITableViewCell {
             
             API.shared.callIsGood(.get(userId: AppContext.shared.ID!), successHandler: { result in
                 isGood = result
+                print("isgoogget")
             })
 
             for i in 0..<isGood.count {
@@ -96,12 +98,18 @@ final class HomeTableViewCell: UITableViewCell {
                 Good = false
                 }
             }
+            
+            print(Good)
 
             if Good {
                 API.shared.callItem(.goodAdd(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                    print("addgood")
+                    self.handleTap()
                 })
             } else {
                 API.shared.callItem(.goodDelete(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                    print("deletegood")
+                    self.handleTap()
                 })
             }
                     
@@ -109,40 +117,47 @@ final class HomeTableViewCell: UITableViewCell {
                 
             
             
-        }
-        
-        API.shared.callItem(.get, successHandler: { result in
-            items = result
-            
-            let postId = items[items.count - self.indexPath[1] - 1].No
-            let queue = DispatchQueue.global(qos: .default)
-            
-            API.shared.callIsGood(.get(userId: AppContext.shared.ID!), successHandler: { result in
-                isGood = result
+        }*/
+        queue.sync {
+            API.shared.callItem(.get, successHandler: { result in
+                items = result
                 
-                var Good = true
+                let postId = items[items.count - self.indexPath[1] - 1].No
                 
-                queue.sync {
+                
+                API.shared.callIsGood(.get(userId: AppContext.shared.ID!), successHandler: { result in
+                    isGood = result
+                    
+                    var Good = true
+                    
                     for i in 0..<isGood.count {
                         if isGood[i] == postId {
                             Good = false
                         }
                     }
-                    
+                    print(Good)
+                
                     if Good {
                         API.shared.callItem(.goodAdd(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                            print("goodadd")
+                            self.handleTap()
+                        }, errorHandler: { _ in
+                            
                         })
                     } else {
                         API.shared.callItem(.goodDelete(userId: AppContext.shared.ID!, No: postId), successHandler: { _ in
+                            print("gooddelete")
+                            self.handleTap()
+                        }, errorHandler: { _ in
+                            
                         })
                     }
-                    
-                    self.handleTap()
-                }
+                })
+                //self.handleTap()
+            },errorHandler: {_ in
+                
             })
-            
-            //self.handleTap()
-        })
+        }
     }
     
     
@@ -153,7 +168,7 @@ final class HomeTableViewCell: UITableViewCell {
          
         API.shared.callItem(.get, successHandler: { result in
             items = result
-            print("get")
+            print("getItemssuccess")
             
             let userId = items[items.count - self.indexPath[1] - 1].userId
             let postId = items[items.count - self.indexPath[1] - 1].No
@@ -161,8 +176,12 @@ final class HomeTableViewCell: UITableViewCell {
             
             API.shared.callItem(.delete(No: postId, userId: AppContext.shared.ID!), successHandler: { result in
                 self.handleTap()
-                print("delete")
+                print("deletesuccess")
+            }, errorHandler: { _ in
+                print("deletefailed")
             })
+        },errorHandler: { _ in
+            
         })
     }
 }

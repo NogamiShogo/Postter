@@ -21,18 +21,23 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
         return viewController
     }
     
+    
     // MARK: - Outlet
+    
     
     @IBOutlet weak var tweetButton: UIBarButtonItem!
     
+    @IBOutlet private weak var textField: UITextField!
+    
+    
     // MARK: - Proprerty
     
-    @IBOutlet private weak var textField: UITextField!
     
     private let disposeBag = DisposeBag()
     
     
     // MARK: - Lifecycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,24 +54,23 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
         }).disposed(by: disposeBag)
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presentingViewController?.beginAppearanceTransition(true, animated: animated)
         presentingViewController?.endAppearanceTransition()
     }
-    
-    
 
     
-    
     // MARK: - Private
+    
     
     private func setupUI() {
         
     }
     
+    
     // MARK: - Action
+    
     
     @IBAction func textFieldEditingChanged(_ sender: Any) {
         if textField.text == "" {
@@ -78,7 +82,10 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
-        API.shared.callItem(.post(post: textField.text!, userId: AppContext.shared.ID!), successHandler: { result in
+        API.shared.callItem(.post(post: textField.text!, userId: AppContext.shared.ID!),successHandler: { result in
+            print("tweetsuccess")
+        }, errorHandler: { _ in
+            print("tweetfaied")
         })
         
         self.dismiss(animated: true)

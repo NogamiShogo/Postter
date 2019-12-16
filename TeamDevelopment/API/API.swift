@@ -13,11 +13,13 @@ import Moya
 final class API {
     
     static let shared = API()
-    private let provider = MoyaProvider<MultiTarget>()
+    private let provider: MoyaProvider<MultiTarget>
     
     // 引数にメソッドを定義 @escapingをつける
-    func callItem(_ request: ItemRequest, successHandler: @escaping (ItemRequest.Response) -> Void) {
+    func callItem(_ request: ItemRequest, successHandler: @escaping (ItemRequest.Response) -> Void, errorHandler: @escaping (Int) -> Void) {
         let target = MultiTarget(request)
+        
+        print("callItem")
         
         self.provider.request(target) { response in
             switch response.result {
@@ -30,15 +32,19 @@ final class API {
                     successHandler(try JSONDecoder().decode((ItemRequest.Response).self, from: result.data))
                 } catch {
                     print(error)
+                    errorHandler(0)
                 }
             case .failure(let error):
                 print(error)
+                errorHandler(0)
             }
         }
     }
     
     func callUser(_ request: UserRequest, successHandler: @escaping (UserRequest.Response) -> Void) {
         let target = MultiTarget(request)
+        
+        print("callUser")
         
         self.provider.request(target) { response in
             switch response.result {
@@ -60,6 +66,8 @@ final class API {
     
     func callIsGood(_ request: isGoodRequest, successHandler: @escaping (isGoodRequest.Response) -> Void) {
         let target = MultiTarget(request)
+        
+        print("callIsGood")
         
         self.provider.request(target) { response in
             switch response.result {
@@ -83,5 +91,8 @@ final class API {
     
     // MARK: - Private
     
-    private init() {}
+    
+    private init() {
+        provider = MoyaProvider(plugins: [LoggerPlugin()])
+    }
 }

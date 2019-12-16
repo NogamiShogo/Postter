@@ -12,7 +12,9 @@ import RxCocoa
 
 final class LoginViewController: UIViewController, Storyboardable {
     
+    
     // MARK: - Builder
+    
 
     class func build() -> UIViewController {
         let viewController = instantiateViewController()
@@ -31,11 +33,15 @@ final class LoginViewController: UIViewController, Storyboardable {
     
     private let disposeBag = DisposeBag()
     
+    
     // MARK: - Proprerty
+    
     
     var Users: [User] = []
     
+    
     // MARK: - Lifecycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,23 +50,19 @@ final class LoginViewController: UIViewController, Storyboardable {
         getPassword()
         
         idTextField.rx.text.subscribe(onNext: { text in
-            
             if self.idTextField.text != "" && self.passwordTextField.text != "" {
                 self.loginButton.isEnabled = true
             } else {
                 self.loginButton.isEnabled = false
             }
-            
         }).disposed(by: disposeBag)
         
         passwordTextField.rx.text.subscribe(onNext: { text in
-            
             if self.idTextField.text != "" && self.passwordTextField.text != "" {
                 self.loginButton.isEnabled = true
             } else {
                 self.loginButton.isEnabled = false
             }
-            
         }).disposed(by: disposeBag)
     }
     
@@ -74,7 +76,9 @@ final class LoginViewController: UIViewController, Storyboardable {
         self.view.endEditing(true)
     }
     
+    
     // MARK: - Private
+    
     
     private func setupUI() {
         idTextField.keyboardType = UIKeyboardType.numberPad
@@ -86,7 +90,9 @@ final class LoginViewController: UIViewController, Storyboardable {
         })
     }
     
+    
     // MARK: - Action
+    
     
     @IBAction func button(_ sender: Any) {
         
@@ -104,8 +110,6 @@ final class LoginViewController: UIViewController, Storyboardable {
                 index = i
             }
         }
-        
-        
         
         if passwordTextField.text == Users[index].pass {
             AppContext.shared.ID = accountId

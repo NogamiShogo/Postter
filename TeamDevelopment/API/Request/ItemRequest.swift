@@ -14,11 +14,11 @@ enum ItemRequest {
     case delete (No: Int, userId: Int)
     case goodAdd (userId: Int, No: Int)
     case goodDelete (userId: Int, No: Int)
-    case badAdd (postId: Int)
-    case badDelete (postId: Int)
 }
 
+
 // MARK: - APITargetType
+
 
 extension ItemRequest: BaseTargetType {
 
@@ -31,15 +31,11 @@ extension ItemRequest: BaseTargetType {
         case .post:
             return ""
         case .delete:
-            return ""
+            return "/del"
         case .goodAdd:
             return "/good"
         case .goodDelete:
-            return "/good"
-        case .badAdd:
-            return "/bad"
-        case .badDelete:
-            return "/bad"
+            return "/gooddel"
         }
     }
 
@@ -50,15 +46,11 @@ extension ItemRequest: BaseTargetType {
         case .post:
             return .post
         case .delete:
-            return .delete
+            return .post
         case .goodAdd:
             return .put
         case .goodDelete:
-            return .delete
-        case .badAdd:
             return .put
-        case .badDelete:
-            return .delete
         }
     }
 
@@ -77,7 +69,7 @@ extension ItemRequest: BaseTargetType {
                 "No": No,
                 "userID": userId
             ]
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .goodAdd(let userId, let No):
             let parameters: Parameters = [
                 "userId": userId,
@@ -88,16 +80,6 @@ extension ItemRequest: BaseTargetType {
             let parameters: Parameters = [
                 "userId": userId,
                 "No": No
-            ]
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .badAdd(let postId):
-            let parameters: Parameters = [
-                "postId": postId
-            ]
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .badDelete(let postId):
-            let parameters: Parameters = [
-                "postId": postId
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
