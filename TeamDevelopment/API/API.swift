@@ -91,10 +91,7 @@ final class API {
     
     // MARK: - Private
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> 8273a9554b58054179957baf5d9e8d75892f5b9e
+
     private init() {
         provider = MoyaProvider(plugins: [LoggerPlugin()])
     }
