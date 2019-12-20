@@ -31,11 +31,11 @@ extension ItemRequest: BaseTargetType {
         case .post:
             return ""
         case .delete:
-            return "/del"
+            return ""
         case .goodAdd:
             return "/good"
         case .goodDelete:
-            return "/gooddel"
+            return "/good"
         }
     }
 
@@ -46,11 +46,11 @@ extension ItemRequest: BaseTargetType {
         case .post:
             return .post
         case .delete:
-            return .post
+            return .delete
         case .goodAdd:
             return .put
         case .goodDelete:
-            return .put
+            return .delete
         }
     }
 
@@ -64,12 +64,12 @@ extension ItemRequest: BaseTargetType {
                 "userId": userId
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .delete(let userId, let No):
+        case .delete(let No, let userId):
             let parameters: Parameters = [
                 "No": No,
-                "userID": userId
+                "userId": userId,
             ]
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .goodAdd(let userId, let No):
             let parameters: Parameters = [
                 "userId": userId,

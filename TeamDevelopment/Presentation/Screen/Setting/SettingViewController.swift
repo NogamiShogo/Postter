@@ -34,13 +34,13 @@ final class SettingViewController: UITableViewController, Storyboardable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if AppContext.shared.ID != nil {
-            AccountID.text = "\(AppContext.shared.ID!)"
+        if AppContext.shared.id != nil {
+            AccountID.text = "No: \(AppContext.shared.id!)"
         } else {
             AccountID.text = "未ログイン"
         }
         
-        if AppContext.shared.ID == nil {
+        if AppContext.shared.id == nil {
             let viewController = LoginViewController.build()
             present(viewController, animated: true)
         }
@@ -52,7 +52,7 @@ final class SettingViewController: UITableViewController, Storyboardable {
     }
     
     @IBAction func LogOutButton(_ sender: Any) {
-        AppContext.shared.ID = nil
+        AppContext.shared.id = nil
         
         let viewController = LoginViewController.build()
         //navigationController?.pushViewController(viewController, animated: true)

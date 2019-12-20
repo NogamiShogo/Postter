@@ -24,11 +24,21 @@ final class HomeViewController: UIViewController, Storyboardable {
     private var items: [Item] = []
     
     private var cards: [CardModel] = [
-        CardModel(date: "",
+        CardModel(date: "1900/1/1",
                   body: "dammyData",
                   goodCount: 404,
                   postId: 0)
     ]
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+
+        return refreshControl
+    }()
+    
+    private var nextPage = 1
+    private var isLoading = false
 
     // MARK: - Outlet
     
@@ -45,14 +55,14 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setItems(complete: {
+        setInitialItems(complete: {
+            print("reloaddata")
             DispatchQueue.main.async {
-                print("reloaddata")
                 self.tableView.reloadData()
             }
         })
         
-        if AppContext.shared.ID == nil {
+        if AppContext.shared.id == nil {
             let viewController = LoginViewController.build()
             present(viewController, animated: true)
         }
@@ -67,6 +77,7 @@ final class HomeViewController: UIViewController, Storyboardable {
         tableView.delegate = self
         tableView.allowsSelection = false
         //tableView.separatorStyle = .none
+        tableView.refreshControl = refreshControl
         
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HomeTableViewCell")
@@ -90,12 +101,12 @@ final class HomeViewController: UIViewController, Storyboardable {
             title: "retry",
             style: .default,
             handler: { (UIAlertAction) in
-                self.setItems {
+                self.setInitialItems(complete: {
+                    print("reloaddata")
                     DispatchQueue.main.async {
-                        print("reloaddata")
                         self.tableView.reloadData()
                     }
-                }
+                })
             }
         )
         alert.addAction(cancel)
@@ -103,40 +114,238 @@ final class HomeViewController: UIViewController, Storyboardable {
         present(alert, animated: true, completion: nil)
     }
     
-    private func setItems ( complete: @escaping () -> Void) {
+    func showActionSheet() {
+        let indexpath = AppContext.shared.indexpath!
+        let userId = items[items.count - indexpath - 1].userId
+        //let userId = 1
+        print(userId, AppContext.shared.id!)
+        if userId == AppContext.shared.id! {
+            showDeleteActionSheet()
+        } else {
+            hoge()
+        }
+    }
+    
+    func showDeleteActionSheet() {
+        // styleをActionSheetに設定
+        let alertSheet = UIAlertController(title: "caution", message: "delete this tweet?", preferredStyle: UIAlertController.Style.actionSheet)
+
+            // 自分の選択肢を生成
+            /*let action1 = UIAlertAction(title: "1", style: UIAlertAction.Style.default, handler: {
+                (action: UIAlertAction!) in
+            })*/
+            let action2 = UIAlertAction(title: "delete", style: UIAlertAction.Style.destructive, handler: {
+                (action: UIAlertAction!) in
+                self.deleteItem()
+            })
+            let action3 = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+                (action: UIAlertAction!) in
+            })
+
+            // アクションを追加.
+            //alertSheet.addAction(action1)
+            alertSheet.addAction(action2)
+            alertSheet.addAction(action3)
+
+            self.present(alertSheet, animated: true, completion: nil)
+        
+    }
+    
+    func hoge() {
+        let alertSheet = UIAlertController(title: "caution", message: "this tweet is not yours", preferredStyle: UIAlertController.Style.actionSheet)
+
+            // 自分の選択肢を生成
+            /*let action1 = UIAlertAction(title: "1", style: UIAlertAction.Style.default, handler: {
+                (action: UIAlertAction!) in
+            })
+            let action2 = UIAlertAction(title: "delete", style: UIAlertAction.Style.destructive, handler: {
+                (action: UIAlertAction!) in
+                self.deleteItem()
+            })*/
+            let action3 = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel, handler: {
+                (action: UIAlertAction!) in
+            })
+
+            // アクションを追加.
+            //alertSheet.addAction(action1)
+            //alertSheet.addAction(action2)
+            alertSheet.addAction(action3)
+
+            self.present(alertSheet, animated: true, completion: nil)
+        
+    }
+    
+    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleHeight = scrollView.frame.height - scrollView.contentInset.top - scrollView.contentInset.bottom
+        let y = scrollView.contentOffset.y + scrollView.contentInset.top
+        let threshold = max(0.0, scrollView.contentSize.height - visibleHeight)
+
+        if y > threshold && items.count > nextPage * 20 {
+            setMoreItems()
+        }
+    }
+    
+    @objc private func didPullToRefresh() {
+        setInitialItems(complete: {
+            print("reloaddata")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    
+    
+    
+    // MARK: - setItems
+    
+    
+    private func setInitialItems( complete: @escaping () -> Void) {
         
         let queue = DispatchQueue.global(qos: .default)
         queue.async { [unowned self] in
-            API.shared.callItem(.get, successHandler: { result in
-            
-                self.items = result
+            API.shared.callItem(.get, successHandler: { items in
+                print("items.count :", items.count)
+                self.items = items
+                self.refreshControl.endRefreshing()
                 
                 print("getItemssuccess")
                 
                 self.cards = self.cards.filter { $0.body == "" }
                 
-                for i in (0..<self.items.count).reversed() {
+                var count = 0
+                if self.items.count > 20 {
+                    count = 20
+                } else {
+                    count = self.items.count
+                }
+                
+                for i in (self.items.count - count..<self.items.count).reversed() {
                     self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good, postId: self.items[i].No))
                 }
-                DispatchQueue.main.async {
-                    complete()
-                    print("abc")
-                }
-            }, errorHandler: {_ in
+                
+                complete()
+            }, errorHandler: { error in
                 self.alert()
                 print("getItemfailed")
+                print(error)
+                self.refreshControl.endRefreshing()
             })
         }
-        
-        print("setItems")
     }
     
+    private func setMoreItems() {
+        var count = 0
+        if self.items.count > (nextPage + 1) * 20 {
+            count = (nextPage + 1) * 20
+        } else {
+            count = self.items.count
+        }
+        let hoge = self.items.count - nextPage * 20
+        let fuga = self.items.count - count
+        for i in (fuga..<hoge).reversed() {
+            self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good, postId: self.items[i].No))
+        }
+        tableView.reloadData()
+        nextPage += 1
+    }
+    
+    func goodButtonDidTap() {
+        var isGood: [Int] = []
+        
+        //let queue = DispatchQueue.global(qos: .default)
+        
+        let indexpath = AppContext.shared.indexpath!
+        
+        
+        //queue.sync {
+        let postId = self.items[self.items.count - indexpath - 1].No
+                
+                
+            API.shared.callIsGood(.get(userId: AppContext.shared.id!), successHandler: { result in
+                isGood = result
+                
+                var Good = true
+                
+                for i in 0..<isGood.count {
+                    if isGood[i] == postId {
+                        Good = false
+                    }
+                }
+                print(Good)
+                
+                if Good {
+                    API.shared.callItem(.goodAdd(userId: AppContext.shared.id!, No: postId), successHandler: { _ in
+                        print("goodadd")
+                        self.setInitialItems(complete: {
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        })
+                    }, errorHandler: { _ in
+                        self.setInitialItems(complete: {
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        })
+                    })
+                } else {
+                    API.shared.callItem(.goodDelete(userId: AppContext.shared.id!, No: postId), successHandler: { _ in
+                        print("gooddelete")
+                        self.setInitialItems(complete: {
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        })
+                            
+                        }, errorHandler: { _ in
+                        self.setInitialItems(complete: {
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        })
+                    })
+                }
+            })
+        //}
+    }
+        
+                
+        
+    
+    private func deleteItem() {
+             
+        let indexpath = AppContext.shared.indexpath!
+         
+         //let userId = items[items.count - indexPath! - 1].userId
+        let postId = items[items.count - indexpath - 1].No
 
+        let userId = AppContext.shared.id!
+        print(userId, postId)
+         
+        API.shared.callItem(.delete(No: postId, userId: userId), successHandler: { result in
+            print("deletesuccess")
+            self.setInitialItems(complete: {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }, errorHandler: { error in
+            print(error)
+            self.setInitialItems(complete: {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        })
+    }
+    
     
     // MARK: - Action
     
+    
     @IBAction private func reload(_ sender: Any) {
-        setItems(complete: { [unowned self] in
+        setInitialItems(complete: { [unowned self] in
             DispatchQueue.main.async {
                 print("reloaddata")
                 self.tableView.reloadData()
@@ -151,8 +360,8 @@ final class HomeViewController: UIViewController, Storyboardable {
 }
 
 
-
 // MARK: - UITableViewDataSource
+
 
 extension HomeViewController: UITableViewDataSource {
     
@@ -195,11 +404,11 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
-extension HomeViewController: UITableViewDelegate, CustomCellUpdater {
+extension HomeViewController: UITableViewDelegate, CustomCellDelegate {
     func updateTableView() {
-        setItems(complete: {
+        setInitialItems(complete: {
+            print("reloaddata")
             DispatchQueue.main.async {
-                print("reloaddata")
                 self.tableView.reloadData()
             }
         })

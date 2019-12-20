@@ -34,12 +34,21 @@ final class AppContext {
         }
     }
     
-    var ID: Int? {
+    var id: Int? {
         get {
-            return (userDefaults.object(forKey: "ID") as? Int)
+            return (userDefaults.object(forKey: "id") as? Int)
         }
         set {
-            userDefaults.set(newValue, forKey: "ID")
+            userDefaults.set(newValue, forKey: "id")
+        }
+    }
+    
+    var indexpath: Int? {
+        get {
+            return (userDefaults.object(forKey: "indexpath") as? Int)
+        }
+        set {
+            userDefaults.set(newValue, forKey: "indexpath")
         }
     }
     

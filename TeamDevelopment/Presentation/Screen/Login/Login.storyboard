@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CIT-Zn-w6c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CIT-Zn-w6c">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,7 +54,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ID 1 でログイン"/>
                                 <connections>
-                                    <action selector="initialLoginButton:" destination="CIT-Zn-w6c" eventType="touchUpInside" id="sGq-fD-N6g"/>
+                                    <action selector="initialLoginButton:" destination="CIT-Zn-w6c" eventType="touchUpInside" id="Vmq-fc-qFt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,7 +64,8 @@
                     <navigationItem key="navigationItem" id="zbk-7Q-NtN"/>
                     <connections>
                         <outlet property="idTextField" destination="mvt-vu-Jdq" id="a9m-9G-iTl"/>
-                        <outlet property="loginButton" destination="Obb-Ya-rH1" id="XwI-Ip-aVo"/>
+                        <outlet property="initialLoginButton" destination="j6B-45-yXj" id="0ex-ej-4Gy"/>
+                        <outlet property="loginButton" destination="j6B-45-yXj" id="2oX-vn-RGw"/>
                         <outlet property="passwordTextField" destination="KGu-vn-kUm" id="8yG-fE-OwG"/>
                     </connections>
                 </viewController>

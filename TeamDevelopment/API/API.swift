@@ -16,7 +16,7 @@ final class API {
     private let provider: MoyaProvider<MultiTarget>
     
     // 引数にメソッドを定義 @escapingをつける
-    func callItem(_ request: ItemRequest, successHandler: @escaping (ItemRequest.Response) -> Void, errorHandler: @escaping (Int) -> Void) {
+    func callItem(_ request: ItemRequest, successHandler: @escaping (ItemRequest.Response) -> Void, errorHandler: @escaping (Error) -> Void) {
         let target = MultiTarget(request)
         
         print("callItem")
@@ -31,12 +31,14 @@ final class API {
                     // 引数のメソッドを実行
                     successHandler(try JSONDecoder().decode((ItemRequest.Response).self, from: result.data))
                 } catch {
-                    print(error)
-                    errorHandler(0)
+                    //print(error)
+                    print("case: catch")
+                    errorHandler(error)
                 }
             case .failure(let error):
-                print(error)
-                errorHandler(0)
+                //print(error)
+                print("case: failure")
+                errorHandler(error)
             }
         }
     }

@@ -10,6 +10,6 @@
 struct AppConstant {
 
     //static let domain = "https://postter.serveo.net"
-    static let domain = "https://3f387dd2.ngrok.io"
+    static let domain = "https://fb989adb.ngrok.io"
     static let baseURL = "\(domain)/postter"
 }

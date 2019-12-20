@@ -31,6 +31,8 @@ final class LoginViewController: UIViewController, Storyboardable {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var initialLoginButton: UIButton!
+    
     private let disposeBag = DisposeBag()
     
     
@@ -82,6 +84,7 @@ final class LoginViewController: UIViewController, Storyboardable {
     
     private func setupUI() {
         idTextField.keyboardType = UIKeyboardType.numberPad
+        initialLoginButton.setTitle("", for: .normal) 
     }
     
     private func getPassword() {
@@ -112,7 +115,7 @@ final class LoginViewController: UIViewController, Storyboardable {
         }
         
         if passwordTextField.text == Users[index].pass {
-            AppContext.shared.ID = accountId
+            AppContext.shared.id = accountId
             idTextField.text = ""
             passwordTextField.text = ""
             self.dismiss(animated: true)
@@ -120,7 +123,7 @@ final class LoginViewController: UIViewController, Storyboardable {
     }
     
     @IBAction func initialLoginButton(_ sender: Any) {
-        AppContext.shared.ID = 1
+        AppContext.shared.id = 1
         self.dismiss(animated: true)
     }
     

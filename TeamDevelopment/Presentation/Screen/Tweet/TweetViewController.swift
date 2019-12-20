@@ -82,7 +82,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
-        API.shared.callItem(.post(post: textField.text!, userId: AppContext.shared.ID!),successHandler: { result in
+        API.shared.callItem(.post(post: textField.text!, userId: AppContext.shared.id!),successHandler: { result in
             print("tweetsuccess")
         }, errorHandler: { _ in
             print("tweetfaied")

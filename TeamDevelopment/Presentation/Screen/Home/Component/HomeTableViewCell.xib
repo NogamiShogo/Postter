@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="94" id="Vvf-1m-cog" customClass="HomeTableViewCell" customModule="Postter" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="135" id="Vvf-1m-cog" customClass="HomeTableViewCell" customModule="Postter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="147"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vvf-1m-cog" id="O7L-qP-gog">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vvf-1m-cog" id="O7L-qP-gog">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="147"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本文" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JiS-E6-9Lb">
@@ -22,48 +22,55 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj5-hS-7Zc">
-                        <rect key="frame" x="365" y="8" width="33" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日付" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj5-hS-7Zc">
+                        <rect key="frame" x="341" y="8" width="33" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QcA-Sc-baA">
-                        <rect key="frame" x="108" y="60" width="23" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ge-56-MsE">
-                        <rect key="frame" x="356" y="58" width="31" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="削除"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ge-56-MsE">
+                        <rect key="frame" x="387.5" y="8" width="18.5" height="22"/>
+                        <state key="normal" image="chevron.down" catalog="system"/>
                         <connections>
                             <action selector="deleteButtonDidTap:" destination="Vvf-1m-cog" eventType="touchUpInside" id="AfT-Dz-lqp"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gml-cs-sYN">
-                        <rect key="frame" x="60" y="68" width="40" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <state key="normal" title="Good"/>
-                        <connections>
-                            <action selector="goodButtonDidTapWithSender:" destination="Vvf-1m-cog" eventType="touchUpInside" id="yNC-9G-N4y"/>
-                        </connections>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Dq3-9O-roh">
+                        <rect key="frame" x="60" y="68" width="108" height="40"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gml-cs-sYN">
+                                <rect key="frame" x="0.0" y="0.0" width="58" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Good"/>
+                                <connections>
+                                    <action selector="goodButtonDidTapWithSender:" destination="Vvf-1m-cog" eventType="touchUpInside" id="yNC-9G-N4y"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QcA-Sc-baA">
+                                <rect key="frame" x="74" y="20" width="34" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="QcA-Sc-baA" firstAttribute="leading" secondItem="Gml-cs-sYN" secondAttribute="trailing" constant="16" id="ySa-cj-3TO"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="top" secondItem="Qj5-hS-7Zc" secondAttribute="bottom" constant="8" id="0uv-V6-i4C"/>
-                    <constraint firstItem="QcA-Sc-baA" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="8" id="2ND-BY-oos"/>
-                    <constraint firstItem="Qj5-hS-7Zc" firstAttribute="trailing" secondItem="O7L-qP-gog" secondAttribute="trailing" constant="-16" id="5Sx-dz-LFC"/>
+                    <constraint firstItem="Qj5-hS-7Zc" firstAttribute="trailing" secondItem="O7L-qP-gog" secondAttribute="trailing" constant="-40" id="5Sx-dz-LFC"/>
                     <constraint firstItem="Qj5-hS-7Zc" firstAttribute="top" secondItem="O7L-qP-gog" secondAttribute="top" constant="8" id="JLe-ZO-V6h"/>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leading" constant="60" id="MmJ-RD-yW4"/>
-                    <constraint firstItem="Gml-cs-sYN" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leading" constant="60" id="Ncw-1X-uSw"/>
-                    <constraint firstItem="Gml-cs-sYN" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="4" id="Pme-47-LVZ"/>
-                    <constraint firstAttribute="bottom" secondItem="Gml-cs-sYN" secondAttribute="bottom" constant="4" id="X7I-25-Qy8"/>
+                    <constraint firstItem="Dq3-9O-roh" firstAttribute="top" secondItem="JiS-E6-9Lb" secondAttribute="bottom" constant="4" id="PEO-WZ-soU"/>
+                    <constraint firstItem="Dq3-9O-roh" firstAttribute="leading" secondItem="O7L-qP-gog" secondAttribute="leadingMargin" constant="40" id="TWQ-Xq-9Gg"/>
+                    <constraint firstAttribute="bottom" secondItem="Dq3-9O-roh" secondAttribute="bottom" constant="4" id="Tkw-pT-cLI"/>
                     <constraint firstItem="JiS-E6-9Lb" firstAttribute="trailing" secondItem="O7L-qP-gog" secondAttribute="trailing" constant="-16" id="j4A-y1-D9O"/>
-                    <constraint firstItem="QcA-Sc-baA" firstAttribute="leading" secondItem="Gml-cs-sYN" secondAttribute="trailing" constant="8" id="zvB-fr-omg"/>
+                    <constraint firstItem="9Ge-56-MsE" firstAttribute="top" secondItem="O7L-qP-gog" secondAttribute="top" constant="8" id="kul-KV-fqY"/>
+                    <constraint firstAttribute="trailing" secondItem="9Ge-56-MsE" secondAttribute="trailing" constant="8" id="wqG-22-U5O"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -72,7 +79,10 @@
                 <outlet property="goodButton" destination="Gml-cs-sYN" id="taL-4g-gou"/>
                 <outlet property="goodCount" destination="QcA-Sc-baA" id="2N4-Ce-oaG"/>
             </connections>
-            <point key="canvasLocation" x="247.82608695652175" y="41.517857142857139"/>
+            <point key="canvasLocation" x="247.82608695652175" y="59.263392857142854"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="64" height="36"/>
+    </resources>
 </document>
