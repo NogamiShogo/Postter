@@ -57,7 +57,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Setting" id="LeU-61-h7R">
+                            <tableViewSection headerTitle="About this app" id="LeU-61-h7R">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="294-Lb-Gm5">
                                         <rect key="frame" x="0.0" y="242" width="414" height="43.5"/>
@@ -65,6 +65,20 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="294-Lb-Gm5" id="eI7-QR-Vcx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version: 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k26-3O-QNS">
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="k26-3O-QNS" firstAttribute="leading" secondItem="eI7-QR-Vcx" secondAttribute="leadingMargin" id="K7M-pG-wVh"/>
+                                                <constraint firstItem="k26-3O-QNS" firstAttribute="top" secondItem="eI7-QR-Vcx" secondAttribute="topMargin" id="M8m-ym-iIc"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="k26-3O-QNS" secondAttribute="bottom" id="UMR-HH-W0U"/>
+                                                <constraint firstItem="k26-3O-QNS" firstAttribute="trailing" secondItem="eI7-QR-Vcx" secondAttribute="trailingMargin" id="qRv-Jg-ygs"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IPf-ym-HDh">

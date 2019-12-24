@@ -65,7 +65,7 @@
                     <connections>
                         <outlet property="idTextField" destination="mvt-vu-Jdq" id="a9m-9G-iTl"/>
                         <outlet property="initialLoginButton" destination="j6B-45-yXj" id="0ex-ej-4Gy"/>
-                        <outlet property="loginButton" destination="j6B-45-yXj" id="2oX-vn-RGw"/>
+                        <outlet property="loginButton" destination="Obb-Ya-rH1" id="f5a-9a-tDb"/>
                         <outlet property="passwordTextField" destination="KGu-vn-kUm" id="8yG-fE-OwG"/>
                     </connections>
                 </viewController>

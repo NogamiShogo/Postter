@@ -9,16 +9,8 @@
 import Foundation
 import UIKit
 
-// Storyboard - ViewControllerクラスの関係と
-// xib - 〇〇Cellクラスの関係は同じ
-// UIViewControllerではなく〇〇Cellを継承させること
-/*protocol CustomCellUpdater {
-    func updateTableView()
-}*/
-
 protocol CustomCellDelegate {
     func showActionSheet()
-    func updateTableView()
     func goodButtonDidTap()
 }
 
@@ -39,9 +31,6 @@ final class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //goodCount.translatesAutoresizingMaskIntoConstraints = false
-        //dateLabel.numberOfLines = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,10 +38,6 @@ final class HomeTableViewCell: UITableViewCell {
         
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         bodyLabel.numberOfLines = 0
-        
-        //bodyLabel.adjustsFontSizeToFitWidth = true
-        //bodyLabel.minimumScaleFactor = 0.8
-        //bodyLabel.adjustsFontSizeToFitWidth = true
     }
 
     // MARK: - Property
@@ -66,16 +51,11 @@ final class HomeTableViewCell: UITableViewCell {
     }
     
     var indexPath = IndexPath()
-    //var delegate: CustomCellUpdater?
     var delegate: CustomCellDelegate?
     
     
     // MARK: - Private
     
-    
-    private func handleTap() {
-        self.delegate?.updateTableView()
-    }
     
     
     // MARK: - Action

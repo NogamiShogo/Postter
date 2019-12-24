@@ -10,5 +10,6 @@ import Foundation
 
 struct User: Codable {
     let userId: Int
+    let name: String
     let pass: String
 }

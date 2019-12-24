@@ -55,7 +55,6 @@ final class SettingViewController: UITableViewController, Storyboardable {
         AppContext.shared.id = nil
         
         let viewController = LoginViewController.build()
-        //navigationController?.pushViewController(viewController, animated: true)
         present(viewController, animated: true)
     }
     

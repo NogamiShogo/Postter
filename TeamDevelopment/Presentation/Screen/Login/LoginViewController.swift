@@ -26,20 +26,20 @@ final class LoginViewController: UIViewController, Storyboardable {
     // MARK: - Outlet
     
     @IBOutlet weak var idTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var loginButton: UIButton!
-    
     @IBOutlet weak var initialLoginButton: UIButton!
     
     private let disposeBag = DisposeBag()
+    
+    private var userService: UserService!
+    
     
     
     // MARK: - Proprerty
     
     
-    var Users: [User] = []
+    var users: [User] = []
     
     
     // MARK: - Lifecycle
@@ -84,20 +84,22 @@ final class LoginViewController: UIViewController, Storyboardable {
     
     private func setupUI() {
         idTextField.keyboardType = UIKeyboardType.numberPad
-        initialLoginButton.setTitle("", for: .normal) 
     }
     
     private func getPassword() {
-        API.shared.callUser(.getPassWord, successHandler: { result in
-            self.Users = result
-        })
+        userService.getPassword().done { result in
+            self.users = result
+        }.catch { error in
+            print(error)
+        }
+        
     }
     
     
     // MARK: - Action
     
     
-    @IBAction func button(_ sender: Any) {
+    @IBAction private func button(_ sender: Any) {
         
         var accountId = 0
         var index = 0
@@ -108,13 +110,13 @@ final class LoginViewController: UIViewController, Storyboardable {
             }
         }
         
-        for i in 0..<Users.count {
-            if accountId == Users[i].userId {
+        for i in 0..<users.count {
+            if accountId == users[i].userId {
                 index = i
             }
         }
         
-        if passwordTextField.text == Users[index].pass {
+        if passwordTextField.text == users[index].pass {
             AppContext.shared.id = accountId
             idTextField.text = ""
             passwordTextField.text = ""
@@ -122,10 +124,9 @@ final class LoginViewController: UIViewController, Storyboardable {
         }
     }
     
-    @IBAction func initialLoginButton(_ sender: Any) {
+    @IBAction private func initialLoginButton(_ sender: Any) {
         AppContext.shared.id = 1
         self.dismiss(animated: true)
     }
-    
 }
 

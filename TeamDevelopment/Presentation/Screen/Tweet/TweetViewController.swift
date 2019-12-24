@@ -26,7 +26,6 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     
     @IBOutlet weak var tweetButton: UIBarButtonItem!
-    
     @IBOutlet private weak var textField: UITextField!
     
     
@@ -34,6 +33,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     
     private let disposeBag = DisposeBag()
+    private var itemService: ItemService!
     
     
     // MARK: - Lifecycle
@@ -82,12 +82,12 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     
     @IBAction private func tweetButtonDidTap(_ sender: Any) {
         
-        API.shared.callItem(.post(post: textField.text!, userId: AppContext.shared.id!),successHandler: { result in
+        itemService.post(post: textField.text!, userId: AppContext.shared.id!).done { _ in
             print("tweetsuccess")
-        }, errorHandler: { _ in
-            print("tweetfaied")
-        })
-        
+        }.catch { error in
+            print(error)
+        }
+
         self.dismiss(animated: true)
     }
     

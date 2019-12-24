@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import PromiseKit
 
 final class HomeViewController: UIViewController, Storyboardable {
     
     // MARK: - Builder
+    
 
     class func build() -> UIViewController {
         let viewController = instantiateViewController()
@@ -20,6 +22,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     }
     
     // MARK: - Proprerty
+    
     
     private var items: [Item] = []
     
@@ -39,14 +42,17 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     private var nextPage = 1
     private var isLoading = false
+    private var itemService: ItemService!
 
     // MARK: - Outlet
+    
     
     @IBOutlet private weak var tweetButton: UIButton!
     
     @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Lifecycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +61,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setInitialItems(complete: {
-            print("reloaddata")
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
+        self.setInitialItems()
         
         if AppContext.shared.id == nil {
             let viewController = LoginViewController.build()
@@ -68,15 +69,15 @@ final class HomeViewController: UIViewController, Storyboardable {
         }
     }
 
+    
     // MARK: - Private
+    
     
     private func setupUI() {
         self.view.sendSubviewToBack(tableView)
         
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.allowsSelection = false
-        //tableView.separatorStyle = .none
         tableView.refreshControl = refreshControl
         
         let nib = UINib(nibName: "HomeTableViewCell", bundle: nil)
@@ -101,12 +102,7 @@ final class HomeViewController: UIViewController, Storyboardable {
             title: "retry",
             style: .default,
             handler: { (UIAlertAction) in
-                self.setInitialItems(complete: {
-                    print("reloaddata")
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                })
+                self.setInitialItems()
             }
         )
         alert.addAction(cancel)
@@ -114,19 +110,7 @@ final class HomeViewController: UIViewController, Storyboardable {
         present(alert, animated: true, completion: nil)
     }
     
-    func showActionSheet() {
-        let indexpath = AppContext.shared.indexpath!
-        let userId = items[items.count - indexpath - 1].userId
-        //let userId = 1
-        print(userId, AppContext.shared.id!)
-        if userId == AppContext.shared.id! {
-            showDeleteActionSheet()
-        } else {
-            hoge()
-        }
-    }
-    
-    func showDeleteActionSheet() {
+    private func showDeleteActionSheet() {
         // styleをActionSheetに設定
         let alertSheet = UIAlertController(title: "caution", message: "delete this tweet?", preferredStyle: UIAlertController.Style.actionSheet)
 
@@ -151,7 +135,7 @@ final class HomeViewController: UIViewController, Storyboardable {
         
     }
     
-    func hoge() {
+    private func escapeShowDeleteActionSheet() {
         let alertSheet = UIAlertController(title: "caution", message: "this tweet is not yours", preferredStyle: UIAlertController.Style.actionSheet)
 
             // 自分の選択肢を生成
@@ -175,65 +159,62 @@ final class HomeViewController: UIViewController, Storyboardable {
         
     }
     
-    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let visibleHeight = scrollView.frame.height - scrollView.contentInset.top - scrollView.contentInset.bottom
-        let y = scrollView.contentOffset.y + scrollView.contentInset.top
-        let threshold = max(0.0, scrollView.contentSize.height - visibleHeight)
-
-        if y > threshold && items.count > nextPage * 20 {
-            setMoreItems()
+    private func deleteItem() {
+             
+        let indexpath = AppContext.shared.indexpath!
+        let userId = items[items.count - indexpath - 1].userId
+        let postId = items[items.count - indexpath - 1].No
+        print(userId, postId)
+         
+        itemService.delete(No: postId, userId: userId).done { _ in
+            print("deletesuccess")
+            self.setInitialItems()
+        }.catch { error in
+            print(error)
+            self.setInitialItems()
         }
-    }
-    
-    @objc private func didPullToRefresh() {
-        setInitialItems(complete: {
-            print("reloaddata")
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
-    }
-    
-    
-    
-    
-    // MARK: - setItems
-    
-    
-    private func setInitialItems( complete: @escaping () -> Void) {
         
-        let queue = DispatchQueue.global(qos: .default)
-        queue.async { [unowned self] in
-            API.shared.callItem(.get, successHandler: { items in
-                print("items.count :", items.count)
-                self.items = items
-                self.refreshControl.endRefreshing()
-                
-                print("getItemssuccess")
-                
-                self.cards = self.cards.filter { $0.body == "" }
-                
-                var count = 0
-                if self.items.count > 20 {
-                    count = 20
-                } else {
-                    count = self.items.count
-                }
-                
-                for i in (self.items.count - count..<self.items.count).reversed() {
-                    self.cards.append(CardModel(date: self.items[i].date, body: self.items[i].post, goodCount: self.items[i].good, postId: self.items[i].No))
-                }
-                
-                complete()
-            }, errorHandler: { error in
-                self.alert()
-                print("getItemfailed")
-                print(error)
-                self.refreshControl.endRefreshing()
-            })
-        }
     }
     
+    private func setInitialItems() {
+    
+        itemService.get()
+        
+        /*itemService.get().done { items -> Void in
+            print("items.count :", items.count)
+            print("getItemssuccess")
+            
+            self.items = items
+            self.refreshControl.endRefreshing()
+            self.cards = self.cards.filter { $0.body == "" }
+            var count = 0
+            
+            if self.items.count > 20 {
+                count = 20
+            } else {
+                count = self.items.count
+            }
+            
+            for i in (self.items.count - count..<self.items.count).reversed() {
+                self.cards.append(CardModel(date: self.items[i].date,
+                                            body: self.items[i].post,
+                                            goodCount: self.items[i].good,
+                                            postId: self.items[i].No))
+            }
+        }.done { _ in
+            self.tableView.reloadData()
+        }.catch { error in
+            print(error)
+        }*/
+    }
+    
+    
+    
+    private func tableViewReloadData() -> Bool {
+        tableView.reloadData()
+        return true
+    }
+
     private func setMoreItems() {
         var count = 0
         if self.items.count > (nextPage + 1) * 20 {
@@ -250,21 +231,31 @@ final class HomeViewController: UIViewController, Storyboardable {
         nextPage += 1
     }
     
+    
+    // MARK: - Public
+    
+    
+    func showActionSheet() {
+        let indexpath = AppContext.shared.indexpath!
+        let userId = items[items.count - indexpath - 1].userId
+        //let userId = 1
+        print(userId, AppContext.shared.id!)
+        if userId == AppContext.shared.id! {
+            showDeleteActionSheet()
+        } else {
+            escapeShowDeleteActionSheet()
+        }
+    }
+    
     func goodButtonDidTap() {
         var isGood: [Int] = []
-        
-        //let queue = DispatchQueue.global(qos: .default)
-        
         let indexpath = AppContext.shared.indexpath!
-        
-        
-        //queue.sync {
         let postId = self.items[self.items.count - indexpath - 1].No
                 
                 
-            API.shared.callIsGood(.get(userId: AppContext.shared.id!), successHandler: { result in
-                isGood = result
-                
+        itemService.getIsGood(userId: AppContext.shared.id!)
+        .done { result in
+            isGood = result
                 var Good = true
                 
                 for i in 0..<isGood.count {
@@ -275,69 +266,51 @@ final class HomeViewController: UIViewController, Storyboardable {
                 print(Good)
                 
                 if Good {
-                    API.shared.callItem(.goodAdd(userId: AppContext.shared.id!, No: postId), successHandler: { _ in
+                    self.itemService.goodAdd(userId: AppContext.shared.id!, No: postId)
+                    .done { _ in
                         print("goodadd")
-                        self.setInitialItems(complete: {
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        })
-                    }, errorHandler: { _ in
-                        self.setInitialItems(complete: {
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        })
-                    })
-                } else {
-                    API.shared.callItem(.goodDelete(userId: AppContext.shared.id!, No: postId), successHandler: { _ in
-                        print("gooddelete")
-                        self.setInitialItems(complete: {
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        })
+                        self.setInitialItems()
                             
-                        }, errorHandler: { _ in
-                        self.setInitialItems(complete: {
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        })
-                    })
+                    }.catch { error in
+                        print(error)
+                        self.setInitialItems()
+                    }
+                } else {
+                    self.itemService.goodDelete(userId: AppContext.shared.id!, No: postId)
+                    .done { _ in
+                        print("gooddelete")
+                        self.setInitialItems()
+                    }.catch { error in
+                        print(error)
+                        print("gooddelete")
+                        self.setInitialItems()
+                    }
                 }
-            })
-        //}
-    }
-        
-                
-        
-    
-    private func deleteItem() {
-             
-        let indexpath = AppContext.shared.indexpath!
-         
-         //let userId = items[items.count - indexPath! - 1].userId
-        let postId = items[items.count - indexpath - 1].No
-
-        let userId = AppContext.shared.id!
-        print(userId, postId)
-         
-        API.shared.callItem(.delete(No: postId, userId: userId), successHandler: { result in
-            print("deletesuccess")
-            self.setInitialItems(complete: {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
-        }, errorHandler: { error in
+        }.catch { error in
             print(error)
-            self.setInitialItems(complete: {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
-        })
+        }
+    }
+    
+    
+    // MARK: - objc
+    
+    
+    @objc private func didPullToRefresh() {
+        setInitialItems()
+    }
+    
+    
+    // MARK: - internal
+    
+    
+    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleHeight = scrollView.frame.height - scrollView.contentInset.top - scrollView.contentInset.bottom
+        let y = scrollView.contentOffset.y + scrollView.contentInset.top
+        let threshold = max(0.0, scrollView.contentSize.height - visibleHeight)
+
+        if y > threshold && items.count > nextPage * 20 {
+            setMoreItems()
+        }
     }
     
     
@@ -345,12 +318,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     
     @IBAction private func reload(_ sender: Any) {
-        setInitialItems(complete: { [unowned self] in
-            DispatchQueue.main.async {
-                print("reloaddata")
-                self.tableView.reloadData()
-            }
-        })
+        setInitialItems()
     }
     
     @IBAction private func TweetButtonDidTap(_ sender: Any) {
@@ -381,36 +349,15 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            // 2.tableViewから登録したnibのCellクラスを取り出す
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath as IndexPath) as! HomeTableViewCell
             
             cell.indexPath = indexPath
             cell.model = cards[indexPath.row]
-            cell.delegate = self
+            cell.delegate = self as? CustomCellDelegate
             
-            // 3.このif文を書いてHomeTableViewCellであることを保証し、
-            // インスタンス変数modelにアクセスする
-            // このas?は「ダウンキャスト」を行なっている
-            /*if let cell = cell as? HomeTableViewCell {
-                cell.model = cards[indexPath.row]
-            }*/
-            
-
-            // 4.returnする
             return cell
         default:
             fatalError("invaild section")
         }
-    }
-}
-
-extension HomeViewController: UITableViewDelegate, CustomCellDelegate {
-    func updateTableView() {
-        setInitialItems(complete: {
-            print("reloaddata")
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
     }
 }
