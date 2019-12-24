@@ -15,6 +15,7 @@ final class HomeNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let viewController = HomeViewController.build()
+        
         setViewControllers([viewController], animated: false)
     }
 }

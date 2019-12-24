@@ -10,7 +10,9 @@ import UIKit
 
 final class SettingViewController: UITableViewController, Storyboardable {
     
+    
     // MARK: - Builder
+    
 
     class func build() -> UIViewController {
         let viewController = instantiateViewController()
@@ -19,11 +21,15 @@ final class SettingViewController: UITableViewController, Storyboardable {
         return viewController
     }
 
+    
     // MARK: - Outlet
+    
     
     @IBOutlet weak var AccountID: UILabel!
     
+    
     // MARK: - Lifecycle
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +52,18 @@ final class SettingViewController: UITableViewController, Storyboardable {
         }
     }
     
+    
     // MARK: - Private
+    
     
     private func setupUI() {
     }
     
-    @IBAction func LogOutButton(_ sender: Any) {
+    
+    // MARK: - Action
+    
+    
+    @IBAction private func LogOutButton(_ sender: Any) {
         AppContext.shared.id = nil
         
         let viewController = LoginViewController.build()

@@ -17,6 +17,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     class func build() -> UIViewController {
         let viewController = instantiateViewController()
         viewController.title = "Home"
+        viewController.itemService = ItemService()
 
         return viewController
     }
@@ -178,9 +179,7 @@ final class HomeViewController: UIViewController, Storyboardable {
     
     private func setInitialItems() {
     
-        itemService.get()
-        
-        /*itemService.get().done { items -> Void in
+        itemService.get().done { items -> Void in
             print("items.count :", items.count)
             print("getItemssuccess")
             
@@ -205,10 +204,9 @@ final class HomeViewController: UIViewController, Storyboardable {
             self.tableView.reloadData()
         }.catch { error in
             print(error)
-        }*/
+            self.alert()
+        }
     }
-    
-    
     
     private func tableViewReloadData() -> Bool {
         tableView.reloadData()

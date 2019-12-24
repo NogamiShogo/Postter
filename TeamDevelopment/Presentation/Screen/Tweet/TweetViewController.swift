@@ -17,6 +17,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     class func build() -> UIViewController {
         let viewController = instantiateViewController()
         viewController.title = "Tweet"
+        viewController.itemService = ItemService()
 
         return viewController
     }
@@ -72,7 +73,7 @@ final class TweetViewController: UIViewController, Storyboardable, UITextFieldDe
     // MARK: - Action
     
     
-    @IBAction func textFieldEditingChanged(_ sender: Any) {
+    @IBAction private func textFieldEditingChanged(_ sender: Any) {
         if textField.text == "" {
             tweetButton.isEnabled = false
         } else {

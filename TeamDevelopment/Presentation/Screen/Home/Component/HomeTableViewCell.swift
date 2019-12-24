@@ -49,7 +49,6 @@ final class HomeTableViewCell: UITableViewCell {
             goodCount.text = "\(model.goodCount)"
         }
     }
-    
     var indexPath = IndexPath()
     var delegate: CustomCellDelegate?
     
@@ -61,7 +60,7 @@ final class HomeTableViewCell: UITableViewCell {
     // MARK: - Action
     
     
-    @IBAction func goodButtonDidTap(sender: UIButton) {
+    @IBAction private func goodButtonDidTap(sender: UIButton) {
         AppContext.shared.indexpath = indexPath[1]
         
         if let delegate = self.delegate {
@@ -69,7 +68,7 @@ final class HomeTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func deleteButtonDidTap(_ sender: Any) {
+    @IBAction private func deleteButtonDidTap(_ sender: Any) {
         AppContext.shared.indexpath = indexPath[1]
         
         if let delegate = self.delegate {

@@ -19,6 +19,7 @@ final class LoginViewController: UIViewController, Storyboardable {
     class func build() -> UIViewController {
         let viewController = instantiateViewController()
         viewController.title = "Login"
+        viewController.userService = UserService()
 
         return viewController
     }
@@ -30,16 +31,14 @@ final class LoginViewController: UIViewController, Storyboardable {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var initialLoginButton: UIButton!
     
-    private let disposeBag = DisposeBag()
-    
-    private var userService: UserService!
-    
     
     
     // MARK: - Proprerty
     
     
-    var users: [User] = []
+    private var users: [User] = []
+    private let disposeBag = DisposeBag()
+    private var userService: UserService!
     
     
     // MARK: - Lifecycle
